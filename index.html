@@ -97,18 +97,42 @@
     </div>
   </template>
 
-  <!-- SCREEN 6: CONTACT INFO & SUBMIT -->
-  <template x-if="step === 6">
+ <template x-if="step === 6">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
       <img src="https://cdn.bndleu.com/expoMumbai2025/areumLogo.png" alt="Areum Logo" class="h-12 mx-auto mb-4" />
       <h2 class="text-2xl font-semibold text-center">Your Contact Info</h2>
-      <input x-model="name" type="text" placeholder="Name (optional)" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-      <input x-model="email" type="email" placeholder="Email" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-red-400" />
-      <input x-model="phone" type="tel" placeholder="Phone (optional)" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-yellow-400" />
-      <button @click="submit()" :disabled="loading || (!email && !phone)" class="w-full py-3 bg-green-500 text-white rounded disabled:opacity-50">Submit</button>
+      <input
+        x-model="name"
+        type="text"
+        placeholder="Name"
+        required
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      />
+      <input
+        x-model="email"
+        type="email"
+        placeholder="Email:"
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-red-400"
+      />
+      <input
+        x-model="phone"
+        type="tel"
+        placeholder="Phone:"
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+      />
+      <button
+        @click="submit()"
+        :disabled="loading || !name || (!email && !phone)"
+        class="w-full py-3 bg-green-500 text-white rounded disabled:opacity-50"
+      >
+        <span x-show="!loading">Submit</span>
+        <span x-show="loading">…</span>
+      </button>
       <div class="text-center text-xs text-gray-500 mt-4">AReum in partnerships with Versionwhale Private Limited</div>
     </div>
   </template>
+
+  
 
   <!-- SCREEN 7: NEXT ACTION -->
   <template x-if="step === 7">
