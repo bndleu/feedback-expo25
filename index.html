@@ -69,13 +69,9 @@
         <span x-text="brands.find(b => b.id === selectedBrand)?.name" class="text-lg font-semibold"></span>
       </div>
       <h2 class="text-2xl font-semibold text-center">
-          How would you rate your experience with 
-          <span
-            x-text="brands.find(b => b.id === selectedBrand)?.name"
-            class="underline"
-          ></span>
-          ?
-        </h2>
+        How would you rate your experience with
+        <span x-text="brands.find(b => b.id === selectedBrand)?.name" class="underline"></span>?
+      </h2>
       <div class="flex justify-center space-x-2">
         <template x-for="i in 5" :key="i">
           <svg @click="rating = i" :class="rating >= i ? 'text-yellow-400' : 'text-gray-300'" xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 cursor-pointer transition-colors" fill="currentColor" viewBox="0 0 20 20">
@@ -102,67 +98,37 @@
     </div>
   </template>
 
-   <!-- SCREEN 6: CONTACT INFO & SUBMIT -->
+  <!-- SCREEN 6: CONTACT INFO & SUBMIT -->
   <template x-if="step === 6">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
       <h2 class="text-2xl font-semibold text-center">Your Contact Info</h2>
 
-      <!-- Name (always required) -->
-      <input
-        x-model="name"
-        type="text"
-        placeholder="Name"
-        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
-      />
+      <!-- Name (required) -->
+      <input x-model="name" type="text" placeholder="Name" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" />
 
-      <!-- Email (optional, but if filled must be valid) -->
-      <input
-        x-model="email"
-        type="email"
-        placeholder="Email (optional)"
-        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-red-400"
-      />
+      <!-- Email (optional) -->
+      <input x-model="email" type="email" placeholder="Email (optional)" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-red-400" />
       <p x-show="email && !emailValid" class="text-xs text-red-500">Enter a valid email.</p>
 
-      <!-- Phone (optional, but if filled must pick code + 10 digits) -->
+      <!-- Phone (optional) -->
       <div class="flex space-x-2">
-        <select
-          x-model="phoneCode"
-          class="w-1/3 p-3 border rounded focus:ring-2 focus:ring-yellow-400"
-        >
+        <select x-model="phoneCode" class="w-1/3 p-3 border rounded focus:ring-2 focus:ring-yellow-400">
           <option value="">Code</option>
           <template x-for="code in countryCodes" :key="code">
             <option :value="code" x-text="code"></option>
           </template>
         </select>
-        <input
-          x-model="phoneNumber"
-          type="tel"
-          placeholder="10-digit phone"
-          maxlength="10"
-          class="flex-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
-        />
+        <input x-model="phoneNumber" type="tel" placeholder="10-digit phone" maxlength="10" class="flex-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-yellow-400" />
       </div>
-      <p x-show="phoneNumber && !phoneValid" class="text-xs text-red-500">
-        Enter a 10-digit phone with country code.
-      </p>
+      <p x-show="phoneNumber && !phoneValid" class="text-xs text-red-500">Enter a 10-digit phone with country code.</p>
 
       <!-- Submit -->
-      <button
-        @click="submit()"
-        :disabled="loading || !name || !contactProvided"
-        class="w-full py-3 bg-green-500 text-white rounded disabled:opacity-50"
-      >
-        <span x-show="!loading">Submit</span>
-        <span x-show="loading">…</span>
+      <button @click="submit()" :disabled="loading || !name || !contactProvided" class="w-full py-3 bg-green-500 text-white rounded disabled:opacity-50">
+        <span x-show="!loading">Submit</span><span x-show="loading">…</span>
       </button>
-
-      <div class="text-center text-xs text-gray-500 mt-4">
-        AReum in partnerships with Versionwhale Private Limited
-      </div>
+      <div class="text-center text-xs text-gray-500 mt-4">AReum in partnerships with Versionwhale Private Limited</div>
     </div>
   </template>
-
 
   <!-- SCREEN 7: NEXT ACTION -->
   <template x-if="step === 7">
@@ -180,6 +146,7 @@
   <script>
     function surveyApp() {
       return {
+        /* — State — */
         step: 1,
         loading: false,
         authToken: '',
@@ -201,11 +168,11 @@
         phoneCode: '',
         phoneNumber: '',
         countryCodes: [],
-          // email is valid if blank or matches regex
+
+        /* — Computed — */
         get emailValid() {
           return this.email === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
         },
-        // phone is valid only if 10 digits AND a country code is selected
         get phoneValid() {
           return (
             this.phoneCode &&
@@ -213,39 +180,79 @@
             /^[0-9]{10}$/.test(this.phoneNumber)
           );
         },
-        // “do we have at least one valid contact?”
         get contactProvided() {
           return (this.email && this.emailValid) || (this.phoneNumber && this.phoneValid);
         },
 
+        /* — Lifecycle — */
         init() {
-          // … your existing login‐restoration logic …
+          // restore token
+          const token = sessionStorage.getItem('authToken');
+          if (token) {
+            this.authToken = token;
+            this.userId    = JSON.parse(atob(token.split('.')[1])).id;
+            this.step      = 2;
+          }
 
-          // fetch country codes from RestCountries v2
+          // fetch country codes
           fetch('https://restcountries.com/v2/all?fields=callingCodes')
             .then(res => {
               if (!res.ok) throw new Error(res.status);
               return res.json();
             })
             .then(data => {
-              // flatten & dedupe, then prepend “+”
               this.countryCodes = Array.from(
                 new Set(
                   data
                     .flatMap(c => c.callingCodes)
-                    .filter(code => code)
+                    .filter(Boolean)
                     .map(code => '+' + code)
                 )
-              ).sort((a, b) => {
-                // numeric sort on the digits
-                return parseInt(a.slice(1)) - parseInt(b.slice(1));
-              });
+              ).sort((a, b) => parseInt(a.slice(1)) - parseInt(b.slice(1)));
             })
             .catch(err => {
               console.error('Could not load country codes', err);
-              // fallback to a few commons
               this.countryCodes = ['+91', '+1', '+44', '+61', '+81'];
             });
+        },
+
+        /* — Actions — */
+        async login() {
+          this.loading = true;
+          try {
+            const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/auth/login', {
+              method: 'POST',
+              headers: { 'Content-Type':'application/json' },
+              body: JSON.stringify({ name: this.nameLogin, password: this.passwordLogin })
+            });
+            if (!res.ok) throw new Error('Invalid credentials');
+            const { token } = await res.json();
+            this.authToken = token;
+            sessionStorage.setItem('authToken', token);
+            this.userId = JSON.parse(atob(token.split('.')[1])).id;
+            this.step = 2;
+          } catch (err) {
+            alert('Login failed: ' + err.message);
+          } finally {
+            this.loading = false;
+          }
+        },
+
+        confirmQuit() {
+          if (confirm('Your feedback will not be saved if you exit now. Continue?')) {
+            this.resetSurvey();
+            this.step = 2;
+          }
+        },
+
+        resetSurvey() {
+          this.selectedBrand = null;
+          this.rating        = 0;
+          this.comment       = '';
+          this.name          = '';
+          this.email         = '';
+          this.phoneCode     = '';
+          this.phoneNumber   = '';
         },
 
         async submit() {
@@ -257,8 +264,8 @@
               rating: this.rating,
               comment: this.comment,
               name: this.name,
-              email: this.emailValid ? this.email : '',
-              phone: this.phoneValid ? this.phoneCode + this.phoneNumber : ''
+              email: this.emailValid   ? this.email        : '',
+              phone: this.phoneValid   ? this.phoneCode + this.phoneNumber : ''
             };
             const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/survey/submit', {
               method:'POST',
@@ -277,9 +284,16 @@
             this.loading = false;
           }
         },
+
         logout() {
-          sessionStorage.clear(); this.authToken=''; this.userId=null; this.step=1;
+          sessionStorage.clear();
+          this.authToken = '';
+          this.userId    = null;
+          this.step      = 1;
         }
       };
     }
-    
+  </script>
+
+</body>
+</html>
