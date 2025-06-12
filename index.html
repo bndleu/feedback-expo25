@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" x-data="surveyApp()" x-init="init()">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expo Feedback</title>
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Alpine.js -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- Canvas-Confetti -->
+  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4 relative">
+
+  <!-- Global Header: Logout & Quit -->
+  <div x-show="step > 1" class="absolute top-4 right-4 flex space-x-4">
+    <button
+      @click="logout()"
+      class="text-sm text-red-600 underline hover:text-red-800"
+    >
+      Logout
+    </button>
+    <template x-if="step >= 3 && step <= 6">
+      <button
+        @click="confirmQuit()"
+        class="text-sm text-gray-600 underline hover:text-gray-800"
+      >
+        Quit
+      </button>
+    </template>
+  </div>
+
+  <!-- SCREEN 1: LOGIN -->
+  <template x-if="step === 1">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
+      <!-- Areum Logo -->
+      <img src="https://example.com/areum-logo.png" alt="Areum Logo" class="h-12 mx-auto mb-4" />
+      <h2 class="text-2xl font-semibold text-center">Welcome — Team Login</h2>
+
+      <input
+        x-model="nameLogin"
+        type="text"
+        placeholder="Your Name"
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+
+      <input
+        x-model="passwordLogin"
+        type="password"
+        placeholder="Password"
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+
+      <button
+        @click="login()"
+        :disabled="!nameLogin || !passwordLogin || loading"
+        class="w-full py-3 bg-blue-500 text-white rounded disabled:opacity-50"
+      >
+        <span x-show="!loading">Login</span>
+        <span x-show="loading">…</span>
+      </button>
+
+      <!-- Footer -->
+      <div class="text-center text-xs text-gray-500 mt-4">
+        in partnerships with Versionwhale Private Limited
+      </div>
+    </div>
+  </template>
+
+  <!-- SCREEN 2: BRAND SELECTION -->
+  <template x-if="step === 2">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
+      <!-- Areum Logo -->
+      <img src="https://example.com/areum-logo.png" alt="Areum Logo" class="h-12 mx-auto mb-4" />
+      <h2 class="text-2xl font-semibold text-center">Select Brand</h2>
+      <template x-for="brand in brands" :key="brand.id">
+        <label
+          class="flex items-center space-x-3 p-3 border rounded cursor-pointer hover:bg-gray-50"
+        >
+          <input
+            type="radio"
+            name="brand"
+            :value="brand.id"
+            x-model="selectedBrand"
+            class="form-radio h-5 w-5"
+          />
+          <img
+            :src="brand.logoUrl"
+            alt=""
+            class="h-8 w-8 object-contain"
+          />
+          <span x-text="brand.name" class="ml-2 font-medium"></span>
+        </label>
+      </template>
+      <button
+        @click="step = 3"
+        :disabled="!selectedBrand"
+        class="mt-4 w-full py-3 bg-blue-500 text-white rounded disabled:opacity-50"
+      >
+        Next
+      </button>
+      <!-- Footer -->
+      <div class="text-center text-xs text-gray-500 mt-4">
+        in partnerships with Versionwhale Private Limited
+      </div>
+    </div>
+  </template>
+
+  <!-- SCREEN 3: BEGIN SURVEY -->
+  <template x-if="step === 3">
+    <div
+      class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg flex flex-col items-center space-y-6"
+    >
+      <!-- Areum Logo -->
+      <img src="https://example.com/areum-logo.png" alt="Areum Logo" class="h-12 mx-auto mb-4" />
+      <h2 class="text-3xl font-semibold">Ready to start?</h2>
+      <button
+        @click="step = 4"
+        class="px-8 py-4 bg-green-500 text-white rounded text-lg"
+      >
+        Begin Survey
+      </button>
+      <!-- Footer -->
+      <div class="text-center text-xs text-gray-500 mt-4">
+        in partnerships with Versionwhale Private Limited
+      </div>
+    </div>
+  </template>
+
+  <!-- SCREEN 4: STAR RATING -->
+  <template x-if="step === 4">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6">
+      <!-- Areum Logo -->
+      <img src="https://example.com/areum-logo.png" alt="Areum Logo" class="h-12 mx-auto mb-4" />
+      <h2 class="text-2xl font-semibold text-center">
+        How much do you like this product?
+      </h2>
+      <div class="flex justify-center space-x-2">
+        <template x-for="i in 5" :key="i">
+          <svg
+            @click="rating = i"
+            :class="rating >= i ? 'text-yellow-400' : 'text-gray-300'"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-10 w-10 cursor-pointer transition-colors"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M9.049 2.927C9.349 2.025 10.651 2.025 10.951 2.927l1.286 3.965a1 1 0 00.950.690h4.175c.969 0 1.371 1.240.588 1.810l-3.383 2.460a1 1 0 00-.364 1.118l1.286 3.965c.300.902-.755 1.650-1.538 1.118L10 13.347l-3.383 2.460c-.783.532-1.838-.216-1.538-1.118l1.286-3.965a1 1 0 00-.364-1.118L2.618 9.392c-.783-.570-.381-1.810.588-1.810h4.175a1 1 0 00.950-.690l1.286-3.965z"
+            />
+          </svg>
+        </template>
+      </div>
+      <button
+        @click="step = 5"
+        :disabled="rating === 0"
+        class="w-full py-3 bg-blue-500 text-white rounded disabled:opacity-50"
+      >
+        Next
+      </button>
+      <!-- Footer -->
+      <div class="text-center text-xs text-gray-500 mt-4">
+        in partnerships with Versionwhale Private Limited
+      </div>
+    </div>
+  </template>
+
+  <!-- SCREEN 5: OPEN FEEDBACK -->
+  <template x-if="step === 5">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
+      <!-- Areum Logo -->
+      <img src="https://example.com/areum-logo.png" alt="Areum Logo" class="h-12 mx-auto mb-4" />
+      <h2 class="text-2xl font-semibold text-center">Any quick feedback?</h2>
+      <textarea
+        x-model="comment"
+        rows="3"
+        placeholder="Type here..."
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-green-400"
+      ></textarea>
+      <button
+        @click="step = 6"
+        class="w-full py-3 bg-blue-500 text-white rounded"
+      >
+        Next
+      </button>
+      <!-- Footer -->
+      <div class="text-center text-xs text-gray-500 mt-4">
+        in partnerships with Versionwhale Private Limited
+      </div>
+    </div>
+  </template>
+
+  <!-- SCREEN 6: CONTACT INFO & SUBMIT -->
+  <template x-if="step === 6">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
+      <!-- Areum Logo -->
+      <img src="https://example.com/areum-logo.png" alt="Areum Logo" class="h-12 mx-auto mb-4" />
+      <h2 class="text-2xl font-semibold text-center">Your Contact Info</h2>
+      <input
+        x-model="name"
+        type="text"
+        placeholder="Name (optional)"
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      />
+      <input
+        x-model="email"
+        type="email"
+        placeholder="Email"
+        required
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-red-400"
+      />
+      <input
+        x-model="phone"
+        type="tel"
+        placeholder="Phone (optional)"
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+      />
+      <button
+        @click="submit()"
+        :disabled="loading || !email"
+        class="w-full py-3 bg-green-500 text-white rounded disabled:opacity-50"
+      >
+        <span x-show="!loading">Submit</span>
+        <span x-show="loading">…</span>
+      </button>
+      <!-- Footer -->
+      <div class="text-center text-xs text-gray-500 mt-4">
+        in partnerships with Versionwhale Private Limited
+      </div>
+    </div>
+  </template>
+
+  <!-- SCREEN 7: NEXT ACTION -->
+  <template x-if="step === 7">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4 text-center">
+      <!-- Areum Logo -->
+      <img src="https://example.com/areum-logo.png" alt="Areum Logo" class="h-12 mx-auto mb-4" />
+      <h2 class="text-2xl font-semibold">Thank you! 🎉</h2>
+      <p class="text-gray-600">What would you like to do next?</p>
+      <button
+        @click="resetSurvey(); step = 2"
+        class="w-full py-3 bg-blue-500 text-white rounded"
+      >
+        Switch Brand
+      </button>
+      <button
+        @click="resetSurvey(); step = 3"
+        class="w-full py-3 bg-green-500 text-white rounded"
+      >
+        Continue Same Brand
+      </button>
+      <!-- Footer -->
+      <div class="text-center text-xs text-gray-500 mt-4">
+        in partnerships with Versionwhale Private Limited
+      </div>
+    </div>
+  </template>
+
+  <!-- Alpine State & Methods -->
+  <script>
+    function surveyApp() {
+      return {
+        // steps: 1=login,2=brand,3=begin,4=rating,5=comment,6=contact,7=next
+        step: 1,
+        loading: false,
+        authToken: '',
+        userId: null,
+        nameLogin: '',
+        passwordLogin: '',
+        selectedBrand: null,
+        brands: [
+          { id: 'brand1', name: 'Brand One', logoUrl: 'https://example.com/logo1.png' },
+          { id: 'brand2', name: 'Brand Two', logoUrl: 'https://example.com/logo2.png' },
+          { id: 'brand3', name: 'Brand Three', logoUrl: 'https://example.com/logo3.png' },
+          { id: 'brand4', name: 'Brand Four', logoUrl: 'https://example.com/logo4.png' },
+          { id: 'brand5', name: 'Brand Five', logoUrl: 'https://example.com/logo5.png' }
+        ],
+        rating: 0,
+        comment: '',
+        name: '',
+        email: '',
+        phone: '',
+
+        init() {
+          // restore login if returning
+          const token = sessionStorage.getItem('authToken');
+          if (token) {
+            this.authToken = token;
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            this.userId = payload.id;
+            this.step = 2;
+          }
+        },
+
+        async login() {
+          this.loading = true;
+          try {
+            const res = await fetch(
+              'https://p8u2pge6em.ap-south-1.awsapprunner.com/api/auth/login',
+              {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  name: this.nameLogin,      // send name instead of email
+                  password: this.passwordLogin
+                })
+              }
+            );
+            if (!res.ok) throw new Error('Invalid credentials');
+
+            const { token } = await res.json();
+            this.authToken = token;
+            sessionStorage.setItem('authToken', token);
+
+            // decode to get userId
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            this.userId = payload.id;
+
+            // advance to brand selection
+            this.step = 2;
+          } catch (err) {
+            alert('Login failed: ' + err.message);
+          } finally {
+            this.loading = false;
+          }
+        },
+
+        confirmQuit() {
+          if (
+            confirm(
+              "Your feedback won’t be saved if you exit now. Continue?"
+            )
+          ) {
+            this.resetSurvey();
+            this.step = 2;
+          }
+        },
+
+        resetSurvey() {
+          this.selectedBrand = null;
+          this.rating = 0;
+          this.comment = '';
+          this.name = '';
+          this.email = '';
+          this.phone = '';
+        },
+
+        async submit() {
+          this.loading = true;
+          try {
+            const payload = {
+              userId: this.userId,
+              brandId: this.selectedBrand,
+              rating: this.rating,
+              comment: this.comment,
+              name: this.name,
+              email: this.email,
+              phone: this.phone
+            };
+            const res = await fetch(
+              'https://p8u2pge6em.ap-south-1.awsapprunner.com/api/survey/submit',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${this.authToken}`
+                },
+                body: JSON.stringify(payload)
+              }
+            );
+            if (!res.ok) throw new Error('Submit failed');
+            this.step = 7;
+            confetti({ spread: 60, ticks: 200 });
+          } catch (err) {
+            alert('Error: ' + err.message);
+          } finally {
+            this.loading = false;
+          }
+        },
+
+        logout() {
+          sessionStorage.clear();
+          this.authToken = '';
+          this.userId = null;
+          this.step = 1;
+        }
+      };
+    }
+  </script>
+
+</body>
+</html>
