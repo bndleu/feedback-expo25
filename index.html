@@ -120,35 +120,64 @@
         </textarea>
       </div>
 
+          <!-- Multiple Choice (radio) -->
+    <div x-show="currentQuestion.type==='multiple'">
+      <template x-for="opt in currentQuestion.options" :key="opt">
+        <label class="flex items-center space-x-3 p-2 border rounded cursor-pointer">
+          <input type="radio" :value="opt" x-model="answers[currentQuestionIndex]" class="form-radio"/>
+          <span x-text="opt"></span>
+        </label>
+      </template>
+    </div>
+
+    <!-- Checkbox (multi-select) -->
+    <div x-show="currentQuestion.type==='checkbox'">
+      <template x-for="opt in currentQuestion.options" :key="opt">
+        <label class="flex items-center space-x-3 p-2 border rounded cursor-pointer">
+          <input type="checkbox" :value="opt" @change="toggleCheckbox(opt)"
+                :checked="answers[currentQuestionIndex]?.includes(opt)" class="form-checkbox"/>
+          <span x-text="opt"></span>
+        </label>
+      </template>
+    </div>
+
       <button @click="nextQuestion()"
               :disabled="!answers[currentQuestionIndex]"
               class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
     </div>
   </template>
 
-  <!-- STEP 6: CONTACT -->
-  <template x-if="step===6">
-    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
-      <h2 class="text-xl font-semibold text-center">Your Contact Info</h2>
+<template x-if="step === 6">
+  <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
+    <h2 class="text-xl font-semibold text-center">Your Contact Info</h2>
+    <template x-if="selectedRole==='b2b'">
+      <div class="space-y-3">
+        <input x-model="companyName"     placeholder="Company Name"   class="w-full p-3 border rounded" />
+        <input x-model="contactPerson"   placeholder="Contact Person" class="w-full p-3 border rounded" />
+        <input x-model="email" type="email"   placeholder="Work Email"     class="w-full p-3 border rounded" />
+        <input x-model="phone" type="tel"     placeholder="Work Phone" maxlength="10" class="w-full p-3 border rounded" />
+        <input x-model="designation"     placeholder="Designation"     class="w-full p-3 border rounded" />
+      </div>
+    </template>
 
-      <!-- B2B -->
-      <template x-if="selectedRole==='b2b'">
-        <input x-model="companyName" type="text"     placeholder="Company Name"   class="w-full p-3 border rounded"/>
-        <input x-model="email"       type="email"    placeholder="Work Email"     class="w-full p-3 border rounded"/>
-        <input x-model="phone"       type="tel"      placeholder="Work Phone"     maxlength="10" class="w-full p-3 border rounded"/>
-      </template>
-
-      <!-- D2C -->
-      <template x-if="selectedRole==='d2c'">
-        <input x-model="email" type="email" placeholder="Email"             class="w-full p-3 border rounded"/>
-        <input x-model="phone" type="tel"   placeholder="Phone (optional)" maxlength="10" class="w-full p-3 border rounded"/>
-      </template>
-
-      <button @click="submit()"
-              :disabled="!contactValid"
-              class="w-full py-3 bg-green-500 text-white rounded">Submit</button>
-    </div>
-  </template>
+    <template x-if="selectedRole==='d2c'">
+      <div class="space-y-3">
+        <input x-model="fullName" placeholder="Your Name" class="w-full p-3 border rounded" />
+        <input x-model="email"    type="email" placeholder="Email" class="w-full p-3 border rounded" />
+        <input x-model="phone"    type="tel"   placeholder="Phone (optional)" maxlength="10" class="w-full p-3 border rounded" />
+        <input x-model="city"     placeholder="City" class="w-full p-3 border rounded" />
+        <select x-model="ageGroup" class="w-full p-3 border rounded">
+          <option value="">Age Group</option>
+          <option value="18-25">18-25</option>
+          <option value="26-35">26-35</option>
+          <option value="36-50">36-50</option>
+          <option value="51+">51+</option>
+        </select>
+      </div>
+    </template>
+    <button @click="submit()" :disabled="!contactValid" class="w-full py-3 bg-green-500 text-white rounded">Submit</button>
+  </div>
+</template>
 
   <!-- STEP 7: THANK YOU -->
   <template x-if="step===7">
@@ -163,7 +192,10 @@
   <!-- STEP 8: STATS -->
   <template x-if="step===8">
     <div class="max-w-3xl w-full bg-white p-6 rounded-xl shadow-lg space-y-6 overflow-auto max-h-screen">
-      <h2 class="text-2xl font-semibold text-center">Survey Statistics</h2>
+      <div class="flex justify-between items-center">
+        <h2 class="text-2xl font-semibold text-center">Survey Statistics</h2>
+        <button @click="step=2" class="text-blue-600 underline">Back to Language</button>
+      </div>
 
       <div class="grid grid-cols-2 gap-4">
         <div>Total Responses: <strong x-text="stats.totalResponses"/></div>
@@ -250,7 +282,8 @@
 
       questions:{}, currentQuestionIndex:0, answers:[],
 
-      companyName:'', email:'', phone:'',
+      companyName:'', email:'', phone:'', contactPerson:'', designation:'', fullName:'', city:'', ageGroup:'',
+
 
       stats:{
         totalResponses:0,
@@ -267,10 +300,12 @@
         return this.questions[this.selectedBrand][this.selectedRole].length;
       },
       get contactValid() {
-        return this.selectedRole==='b2b'
-          ? (this.companyName && this.email && this.phone.length===10)
-          : (this.email||this.phone.length===10);
+        if (this.selectedRole === 'b2b') {
+          return this.companyName && this.contactPerson && this.email && this.phone.length === 10;
+        }
+        return this.fullName && (this.email || this.phone.length === 10);
       },
+
 
       init() {
         const t = sessionStorage.getItem('authToken');
@@ -330,36 +365,69 @@
         }
       },
 
+      toggleCheckbox(opt) {
+      if (!Array.isArray(this.answers[this.currentQuestionIndex])) {
+        this.answers[this.currentQuestionIndex] = [];
+      }
+      const idx = this.answers[this.currentQuestionIndex].indexOf(opt);
+      if (idx > -1) {
+        this.answers[this.currentQuestionIndex].splice(idx, 1);
+      } else {
+        this.answers[this.currentQuestionIndex].push(opt);
+      }
+    },
+
       async submit() {
-        this.loading = true;
-        try {
-          const payload = {
-            language:this.selectedLanguage,
-            role:this.selectedRole,
-            brandId:this.selectedBrand,
-            answers:this.answers,
-            companyName:this.selectedRole==='b2b'?this.companyName:null,
-            name:this.selectedRole==='d2c'?this.companyName:null,
-            email:this.email,
-            phone:this.phone
-          };
-          const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/survey/submit', {
-            method:'POST',
-            headers:{
-              'Content-Type':'application/json',
-              Authorization:`Bearer ${this.authToken}`
-            },
-            body: JSON.stringify(payload)
-          });
-          if (!res.ok) throw new Error();
-          this.step = 7;
-          confetti({spread:60,ticks:200});
-        } catch {
-          alert('Submit error');
-        } finally {
-          this.loading = false;
-        }
-      },
+      this.loading = true;
+      try {
+        const rating = this.answers.find(a => typeof a === 'number') ?? null;
+        const comment = this.answers.find(a => typeof a === 'string' && a.length > 2) ?? '';
+
+        const payload = {
+          language: this.selectedLanguage,
+          role: this.selectedRole,
+          brand: this.selectedBrand,
+          rating,
+          comment,
+          answers: this.answers,
+          user_id: this.userId,
+          ...(this.selectedRole === 'b2b'
+            ? {
+                name: this.contactPerson,
+                company_name: this.companyName,
+                contact_name: null,
+                email: this.email,
+                phone: this.phone
+              }
+            : {
+                name: this.fullName,
+                company_name: null,
+                contact_name: this.fullName,
+                email: this.email,
+                phone: this.phone
+              })
+        };
+
+        const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/survey/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.authToken}`
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) throw new Error();
+        this.step = 7;
+        confetti({ spread: 60, ticks: 200 });
+      } catch {
+        alert('Submit error');
+      } finally {
+        this.loading = false;
+      }
+    },
+
+      
 
       viewStats() {
         this.step = 8;
