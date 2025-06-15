@@ -13,7 +13,7 @@
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4 relative">
 
-  <!-- GLOBAL HEADER -->
+  <!-- HEADER: Stats + Logout -->
   <div x-show="step>1" class="absolute top-4 right-4 flex items-center space-x-4">
     <img src="https://cdn.bndleu.com/expoMumbai2025/areumLogo.png" class="h-8" alt="Logo"/>
     <button @click="viewStats()" class="text-sm text-blue-600 underline hover:text-blue-800">Stats</button>
@@ -84,30 +84,42 @@
     </div>
   </template>
 
-  <!-- STEP 5: DYNAMIC QUESTIONS -->
+  <!-- STEP 5: QUESTIONS -->
   <template x-if="step===5">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6">
-      <h2 class="text-xl font-semibold text-center">
-        {{ currentQuestionIndex+1 }} of {{ totalQuestions }}:
-        <span x-text="currentQuestion.text"></span>
+      <h2 class="text-xl font-semibold text-center"
+          x-text="`${currentQuestionIndex+1} of ${totalQuestions}: ${currentQuestion.text}`">
       </h2>
-      <!-- rating -->
+
+      <!-- Rating -->
       <div x-show="currentQuestion.type==='rating'" class="flex justify-center space-x-2">
         <template x-for="i in 5" :key="i">
           <svg @click="recordAnswer(i)"
                :class="answers[currentQuestionIndex]>=i ? 'text-yellow-400' : 'text-gray-300'"
+               xmlns="http://www.w3.org/2000/svg"
                class="h-10 w-10 cursor-pointer transition-colors"
                fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927C...Z"/>
+            <path d="M9.049 2.927C9.349 2.025 10.651 2.025 10.951 2.927l1.286 
+                     3.965a1 1 0 00.950.690h4.175c.969 0 1.371 
+                     1.240.588 1.810l-3.383 2.460a1 1 0 00-.364 
+                     1.118l1.286 3.965c.300.902-.755 
+                     1.650-1.538 1.118L10 13.347l-3.383 
+                     2.460c-.783.532-1.838-.216-1.538-1.118l1.286-3.965a1 
+                     1 0 00-.364-1.118L2.618 9.392c-.783-.570-.381-1.810.588-1.810h4.175a1 
+                     1 0 00.950-.690l1.286-3.965z"/>
           </svg>
         </template>
       </div>
-      <!-- text -->
+
+      <!-- Text -->
       <div x-show="currentQuestion.type==='text'">
         <textarea x-model="answers[currentQuestionIndex]"
                   rows="3"
-                  class="w-full p-3 border rounded"></textarea>
+                  class="w-full p-3 border rounded"
+                  placeholder="Type your feedback…">
+        </textarea>
       </div>
+
       <button @click="nextQuestion()"
               :disabled="!answers[currentQuestionIndex]"
               class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
@@ -121,9 +133,9 @@
 
       <!-- B2B -->
       <template x-if="selectedRole==='b2b'">
-        <input x-model="companyName" type="text"     placeholder="Company Name" class="w-full p-3 border rounded"/>
-        <input x-model="email"       type="email"    placeholder="Work Email"   class="w-full p-3 border rounded"/>
-        <input x-model="phone"       type="tel"      placeholder="Work Phone"   maxlength="10" class="w-full p-3 border rounded"/>
+        <input x-model="companyName" type="text"     placeholder="Company Name"   class="w-full p-3 border rounded"/>
+        <input x-model="email"       type="email"    placeholder="Work Email"     class="w-full p-3 border rounded"/>
+        <input x-model="phone"       type="tel"      placeholder="Work Phone"     maxlength="10" class="w-full p-3 border rounded"/>
       </template>
 
       <!-- D2C -->
@@ -207,62 +219,47 @@
     </div>
   </template>
 
-  <!-- Alpine Component -->
+  <!-- Alpine Component Logic -->
   <script>
   function surveyApp() {
     return {
-      step: 1,
-      loading: false,
-      authToken: '',
-      userId: null,
+      step:1, loading:false, authToken:'', userId:null,
+      nameLogin:'', passwordLogin:'',
 
-      // login
-      nameLogin: '',
-      passwordLogin: '',
-
-      // flow
-      languages: [
-        { code:'en', label:'English' },
-        { code:'hi', label:'Hindi'   },
-        { code:'mr', label:'Marathi' }
+      languages:[
+        {code:'en',label:'English'},
+        {code:'hi',label:'Hindi'},
+        {code:'mr',label:'Marathi'}
       ],
-      selectedLanguage: '',
+      selectedLanguage:'',
 
-      roles: [
-        { id:'b2b', label:'Business' },
-        { id:'d2c', label:'Consumer' }
+      roles:[
+        {id:'b2b',label:'Business'},
+        {id:'d2c',label:'Consumer'}
       ],
-      selectedRole: '',
+      selectedRole:'',
 
-      brands: [
-        { id:'brand1', name:'Molvany',    logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand1.png' },
-        { id:'brand2', name:"Jeu' Demeure", logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand2.png' },
-        { id:'brand3', name:'Vegreen',    logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand3.png' },
-        { id:'brand4', name:'DailyCha-e', logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand4.png' },
-        { id:'brand5', name:'AreumSkincare', logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand5.png' }
+      brands:[
+        {id:'brand1',name:'Molvany',logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand1.png'},
+        {id:'brand2',name:"Jeu' Demeure",logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand2.png'},
+        {id:'brand3',name:'Vegreen',logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand3.png'},
+        {id:'brand4',name:'DailyCha-e',logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand4.png'},
+        {id:'brand5',name:'AreumSkincare',logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand5.png'}
       ],
-      selectedBrand: '',
+      selectedBrand:'',
 
-      // dynamic Qs
-      questions: {},
-      currentQuestionIndex: 0,
-      answers: [],
+      questions:{}, currentQuestionIndex:0, answers:[],
 
-      // contact
-      companyName: '',
-      email: '',
-      phone: '',
+      companyName:'', email:'', phone:'',
 
-      // stats
-      stats: {
-        totalResponses: 0,
-        countByRole: { b2b:0, d2c:0 },
-        countByBrand: {},
-        questionStats: [],
-        allResponses: []
+      stats:{
+        totalResponses:0,
+        countByRole:{b2b:0,d2c:0},
+        countByBrand:{},
+        questionStats:[],
+        allResponses:[]
       },
 
-      // getters
       get currentQuestion() {
         return this.questions[this.selectedBrand][this.selectedRole][this.currentQuestionIndex];
       },
@@ -270,28 +267,25 @@
         return this.questions[this.selectedBrand][this.selectedRole].length;
       },
       get contactValid() {
-        if (this.selectedRole === 'b2b') {
-          return this.companyName && this.email && this.phone.length === 10;
-        }
-        return this.email || this.phone.length === 10;
+        return this.selectedRole==='b2b'
+          ? (this.companyName && this.email && this.phone.length===10)
+          : (this.email||this.phone.length===10);
       },
 
       init() {
-        // restore session
         const t = sessionStorage.getItem('authToken');
         if (t) {
           this.authToken = t;
           this.userId    = JSON.parse(atob(t.split('.')[1])).id;
           this.step      = 2;
         }
-
-        // build dummy questions (5 per brand×role)
-        this.brands.forEach(b => {
+        // build 5 dummy questions per brand×role
+        this.brands.forEach(b=>{
           this.questions[b.id] = {};
-          ['b2b','d2c'].forEach(r => {
-            this.questions[b.id][r] = Array.from({ length:5 }, (_, i) => ({
-              type: i % 2 === 0 ? 'rating' : 'text',
-              text: `Question ${i+1} for ${b.name} (${r.toUpperCase()})`
+          ['b2b','d2c'].forEach(r=>{
+            this.questions[b.id][r] = Array.from({length:5},(_,i)=>({
+              type: i%2===0?'rating':'text',
+              text:`Question ${i+1} for ${b.name} (${r.toUpperCase()})`
             }));
           });
         });
@@ -302,16 +296,16 @@
         try {
           const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/auth/login', {
             method:'POST',
-            headers:{ 'Content-Type':'application/json' },
-            body: JSON.stringify({ name:this.nameLogin, password:this.passwordLogin })
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({name:this.nameLogin,password:this.passwordLogin})
           });
-          if (!res.ok) throw new Error('Invalid credentials');
-          const { token } = await res.json();
-          sessionStorage.setItem('authToken', token);
+          if (!res.ok) throw new Error();
+          const {token} = await res.json();
+          sessionStorage.setItem('authToken',token);
           this.authToken = token;
           this.userId    = JSON.parse(atob(token.split('.')[1])).id;
           this.step      = 2;
-        } catch (e) {
+        } catch(e) {
           alert('Login failed');
         } finally {
           this.loading = false;
@@ -329,7 +323,7 @@
       },
 
       nextQuestion() {
-        if (this.currentQuestionIndex + 1 < this.totalQuestions) {
+        if (this.currentQuestionIndex+1 < this.totalQuestions) {
           this.currentQuestionIndex++;
         } else {
           this.step = 6;
@@ -340,14 +334,14 @@
         this.loading = true;
         try {
           const payload = {
-            language:     this.selectedLanguage,
-            role:         this.selectedRole,
-            brandId:      this.selectedBrand,
-            answers:      this.answers,
-            companyName:  this.selectedRole==='b2b' ? this.companyName : null,
-            name:         this.selectedRole==='d2c' ? this.companyName : null,
-            email:        this.email,
-            phone:        this.phone
+            language:this.selectedLanguage,
+            role:this.selectedRole,
+            brandId:this.selectedBrand,
+            answers:this.answers,
+            companyName:this.selectedRole==='b2b'?this.companyName:null,
+            name:this.selectedRole==='d2c'?this.companyName:null,
+            email:this.email,
+            phone:this.phone
           };
           const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/survey/submit', {
             method:'POST',
@@ -357,10 +351,10 @@
             },
             body: JSON.stringify(payload)
           });
-          if (!res.ok) throw new Error('Submit failed');
+          if (!res.ok) throw new Error();
           this.step = 7;
-          confetti({ spread:60, ticks:200 });
-        } catch(e) {
+          confetti({spread:60,ticks:200});
+        } catch {
           alert('Submit error');
         } finally {
           this.loading = false;
@@ -374,16 +368,16 @@
 
       async loadStats() {
         try {
-          const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/survey/stats', {
-            headers:{ Authorization:`Bearer ${this.authToken}` }
+          const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/survey/stats',{
+            headers:{Authorization:`Bearer ${this.authToken}`}
           });
           if (!res.ok) throw new Error();
           this.stats = await res.json();
         } catch(e) {
-          console.error('Stats load error', e);
+          console.error('Stats load error',e);
         }
-      },
-
+        },
+        
       viewDetails(r) {
         alert(JSON.stringify(r, null, 2));
       },
