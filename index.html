@@ -15,10 +15,11 @@
 
   <!-- HEADER: Stats + Logout -->
   <div x-show="step>1" class="absolute top-4 right-4 flex items-center space-x-4">
-    <img src="https://cdn.bndleu.com/expoMumbai2025/areumLogo.png" class="h-8" alt="Logo"/>
-    <button @click="viewStats()" class="text-sm text-blue-600 underline hover:text-blue-800">Stats</button>
-    <button @click="logout()"     class="text-sm text-red-600  underline hover:text-red-800">Logout</button>
-  </div>
+  <img src="https://cdn.bndleu.com/expoMumbai2025/areumLogo.png" class="h-8" alt="Logo"/>
+  <button @click="viewStats()" class="text-sm text-blue-600 underline hover:text-blue-800">Stats</button>
+  <button @click="step=2"      class="text-sm text-yellow-600 underline hover:text-yellow-800">Exit Survey</button>
+  <button @click="logout()"    class="text-sm text-red-600 underline hover:text-red-800">Logout</button>
+</div>
 
   <!-- STEP 1: LOGIN -->
   <template x-if="step===1">
@@ -51,8 +52,23 @@
     </div>
   </template>
 
-  <!-- STEP 3: ROLE -->
+  <!-- STEP 2: WELCOME SCREEN -->
   <template x-if="step===3">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6 text-center">
+      <img src="https://cdn.bndleu.com/expoMumbai2025/areumLogo.png" class="h-12 mx-auto" alt="Logo"/>
+      <h2 class="text-2xl font-semibold">AREUM x K-Beauty Mumbai 2025</h2>
+      <p class="text-gray-700">
+        Thank you for visiting AREUM at Beautech Mumbai 2025.<br>
+        Please take 1 minute to complete this survey so we can better support your interest.<br>
+        We'll follow up with catalogs, price lists, or samples based on your input.
+      </p>
+      <button @click="step=3"
+              class="w-full py-3 bg-blue-500 text-white rounded">Begin Survey</button>
+    </div>
+  </template>
+
+  <!-- STEP 3: ROLE -->
+  <template x-if="step===4">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
       <h2 class="text-2xl font-semibold text-center">What best describes you?</h2>
       <template x-for="role in roles" :key="role.id">
@@ -68,7 +84,7 @@
   </template>
 
   <!-- STEP 4: BRAND -->
-  <template x-if="step===4">
+  <template x-if="step===5">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
       <h2 class="text-2xl font-semibold text-center">Select Brand</h2>
       <template x-for="brand in brands" :key="brand.id">
@@ -85,7 +101,7 @@
   </template>
 
   <!-- STEP 5: QUESTIONS -->
-  <template x-if="step===5">
+  <template x-if="step===6">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6">
        <h2 class="text-xl font-semibold text-center"
         x-text="`${currentQuestionIndex+1} of ${totalQuestions}: ${currentQuestion.text}`">
@@ -147,7 +163,7 @@
     </div>
   </template>
 
-<template x-if="step === 6">
+<template x-if="step === 7">
   <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
     <h2 class="text-xl font-semibold text-center">Your Contact Info</h2>
 
@@ -190,7 +206,7 @@
 
 
   <!-- STEP 7: THANK YOU -->
-  <template x-if="step===7">
+  <template x-if="step===8">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg text-center space-y-4">
       <h2 class="text-2xl">Thank you! 🎉</h2>
       <p>Your feedback has been recorded.</p>
@@ -200,7 +216,7 @@
   </template>
 
   <!-- STEP 8: STATS -->
-  <template x-if="step===8">
+  <template x-if="step===9">
     <div class="max-w-3xl w-full bg-white p-6 rounded-xl shadow-lg space-y-6 overflow-auto max-h-screen">
       <div class="flex justify-between items-center">
         <h2 class="text-2xl font-semibold text-center">Survey Statistics</h2>
@@ -286,7 +302,9 @@
         {id:'brand2',name:"Jeu' Demeure",logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand2.png'},
         {id:'brand3',name:'Vegreen',logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand3.png'},
         {id:'brand4',name:'DailyCha-e',logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand4.png'},
-        {id:'brand5',name:'AreumSkincare',logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand5.png'}
+        {id:'brand5',name:'AreumSkincare',logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand5.png'},
+        {id:'brand6',name:'MiriCanvas',logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand6.png'}
+
       ],
       selectedBrand:'',
 
@@ -374,7 +392,7 @@
         if (this.currentQuestionIndex+1 < this.totalQuestions) {
           this.currentQuestionIndex++;
         } else {
-          this.step = 6;
+          this.step = 7;
         }
       },
 
@@ -431,7 +449,7 @@
         });
 
         if (!res.ok) throw new Error();
-        this.step = 7;
+        this.step = 8;
         confetti({ spread: 60, ticks: 200 });
       } catch {
         alert('Submit error');
@@ -443,7 +461,7 @@
       
 
       viewStats() {
-        this.step = 8;
+        this.step = 9;
         this.loadStats();
       },
 
@@ -464,7 +482,7 @@
       },
 
       resetSurvey() {
-        this.step = 4;
+        this.step = 5;
         this.selectedBrand = '';
         this.currentQuestionIndex = 0;
         this.answers = [];
