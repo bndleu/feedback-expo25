@@ -64,10 +64,19 @@
           <span x-text="lang.label"></span>
         </label>
       </template>
-      <button @click="step=4"
-              :disabled="!selectedLanguage"
-              class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
-    </div>
+      <button
+        @click="
+          if (selectedBrand === 'brand6') {
+            selectedRole = 'b2b';
+            step = 4;
+          } else {
+            step = 4;
+          }
+        "
+        :disabled="!selectedLanguage"
+        class="w-full py-3 bg-blue-500 text-white rounded">
+        Next
+      </button>
   </template>
 
 
