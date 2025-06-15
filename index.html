@@ -150,24 +150,27 @@
 <template x-if="step === 6">
   <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
     <h2 class="text-xl font-semibold text-center">Your Contact Info</h2>
+
+    <!-- B2B -->
     <template x-if="selectedRole==='b2b'">
       <div class="space-y-3">
-        <input x-model="companyName"     placeholder="Company Name"   class="w-full p-3 border rounded" />
-        <input x-model="contactPerson"   placeholder="Contact Person" class="w-full p-3 border rounded" />
-        <input x-model="email" type="email"   placeholder="Work Email"     class="w-full p-3 border rounded" />
-        <input x-model="phone" type="tel"     placeholder="Work Phone" maxlength="10" class="w-full p-3 border rounded" />
-        <input x-model="designation"     placeholder="Designation"     class="w-full p-3 border rounded" />
+        <input x-model="companyName" placeholder="Company Name (optional)" class="w-full p-3 border rounded" />
+        <input x-model="contactPerson" placeholder="Contact Person *" class="w-full p-3 border rounded" />
+        <input x-model="email" type="email" placeholder="Work Email *" class="w-full p-3 border rounded" />
+        <input x-model="phone" type="tel" placeholder="Phone (10 digits preferred)" maxlength="10" class="w-full p-3 border rounded" />
+        <input x-model="designation" placeholder="Designation (optional)" class="w-full p-3 border rounded" />
       </div>
     </template>
 
+    <!-- D2C -->
     <template x-if="selectedRole==='d2c'">
       <div class="space-y-3">
-        <input x-model="fullName" placeholder="Your Name" class="w-full p-3 border rounded" />
-        <input x-model="email"    type="email" placeholder="Email" class="w-full p-3 border rounded" />
-        <input x-model="phone"    type="tel"   placeholder="Phone (optional)" maxlength="10" class="w-full p-3 border rounded" />
-        <input x-model="city"     placeholder="City" class="w-full p-3 border rounded" />
+        <input x-model="fullName" placeholder="Your Name *" class="w-full p-3 border rounded" />
+        <input x-model="email" type="email" placeholder="Email (optional)" class="w-full p-3 border rounded" />
+        <input x-model="phone" type="tel" placeholder="Phone (optional, 10 digits)" maxlength="10" class="w-full p-3 border rounded" />
+        <input x-model="city" placeholder="City (optional)" class="w-full p-3 border rounded" />
         <select x-model="ageGroup" class="w-full p-3 border rounded">
-          <option value="">Age Group</option>
+          <option value="">Select Age Group (optional)</option>
           <option value="18-25">18-25</option>
           <option value="26-35">26-35</option>
           <option value="36-50">36-50</option>
@@ -175,9 +178,16 @@
         </select>
       </div>
     </template>
-    <button @click="submit()" :disabled="!contactValid" class="w-full py-3 bg-green-500 text-white rounded">Submit</button>
+
+    <!-- Submit Button -->
+    <button @click="submit()" 
+            :disabled="!contactValid" 
+            class="w-full py-3 bg-green-500 text-white rounded disabled:opacity-50">
+      Submit
+    </button>
   </div>
 </template>
+
 
   <!-- STEP 7: THANK YOU -->
   <template x-if="step===7">
@@ -299,13 +309,16 @@
       get totalQuestions() {
         return this.questions[this.selectedBrand][this.selectedRole].length;
       },
-      get contactValid() {
-        if (this.selectedRole === 'b2b') {
-          return this.companyName && this.contactPerson && this.email && this.phone.length === 10;
-        }
+     get contactValid() {
+      if (this.selectedRole === 'b2b') {
+        return this.contactPerson && this.email;
+      }
+      if (this.selectedRole === 'd2c') {
         return this.fullName && (this.email || this.phone.length === 10);
-      },
-
+      }
+      return false;
+    }
+    ,
 
       init() {
         const t = sessionStorage.getItem('authToken');
