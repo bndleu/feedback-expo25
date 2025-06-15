@@ -36,24 +36,8 @@
     </div>
   </template>
 
-  <!-- STEP 2: LANGUAGE -->
+    <!-- STEP 2: WELCOME SCREEN -->
   <template x-if="step===2">
-    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
-      <h2 class="text-2xl font-semibold text-center">Choose Language</h2>
-      <template x-for="lang in languages" :key="lang.code">
-        <label class="flex items-center space-x-3 p-3 border rounded cursor-pointer">
-          <input type="radio" name="lang" :value="lang.code" x-model="selectedLanguage" class="form-radio"/>
-          <span x-text="lang.label"></span>
-        </label>
-      </template>
-      <button @click="step=3"
-              :disabled="!selectedLanguage"
-              class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
-    </div>
-  </template>
-
-  <!-- STEP 2: WELCOME SCREEN -->
-  <template x-if="step===3">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6 text-center">
       <img src="https://cdn.bndleu.com/expoMumbai2025/areumLogo.png" class="h-12 mx-auto" alt="Logo"/>
       <h2 class="text-2xl font-semibold">AREUM x K-Beauty Mumbai 2025</h2>
@@ -67,7 +51,25 @@
     </div>
   </template>
 
-  <!-- STEP 3: ROLE -->
+
+  <!-- STEP 3: LANGUAGE -->
+  <template x-if="step===3">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
+      <h2 class="text-2xl font-semibold text-center">Choose Language</h2>
+      <template x-for="lang in languages" :key="lang.code">
+        <label class="flex items-center space-x-3 p-3 border rounded cursor-pointer">
+          <input type="radio" name="lang" :value="lang.code" x-model="selectedLanguage" class="form-radio"/>
+          <span x-text="lang.label"></span>
+        </label>
+      </template>
+      <button @click="step=4"
+              :disabled="!selectedLanguage"
+              class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
+    </div>
+  </template>
+
+
+  <!-- STEP 4: ROLE -->
   <template x-if="step===4">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
       <h2 class="text-2xl font-semibold text-center">What best describes you?</h2>
@@ -83,7 +85,7 @@
     </div>
   </template>
 
-  <!-- STEP 4: BRAND -->
+  <!-- STEP 5: BRAND -->
   <template x-if="step===5">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
       <h2 class="text-2xl font-semibold text-center">Select Brand</h2>
@@ -100,8 +102,18 @@
     </div>
   </template>
 
-  <!-- STEP 5: QUESTIONS -->
-  <template x-if="step===6">
+  <!-- New STEP 6: BRAND INTRO -->
+<template x-if="step===6">
+  <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6 text-center">
+    <img :src="brandDescriptions[selectedBrand].poster" class="h-24 mx-auto object-contain" alt="Brand Poster"/>
+    <h2 class="text-2xl font-semibold" x-text="brandDescriptions[selectedBrand].name"/>
+    <p class="text-gray-700" x-text="brandDescriptions[selectedBrand].desc"/>
+    <button @click="startQuestions()" class="w-full py-3 bg-blue-500 text-white rounded">Continue</button>
+  </div>
+</template>
+
+  <!-- STEP 7: QUESTIONS -->
+  <template x-if="step===7">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6">
        <h2 class="text-xl font-semibold text-center"
         x-text="`${currentQuestionIndex+1} of ${totalQuestions}: ${currentQuestion.text}`">
@@ -163,7 +175,9 @@
     </div>
   </template>
 
-<template x-if="step === 7">
+    <!-- STEP 8: QUESTIONS -->
+
+<template x-if="step === 8">
   <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
     <h2 class="text-xl font-semibold text-center">Your Contact Info</h2>
 
@@ -205,17 +219,17 @@
 </template>
 
 
-  <!-- STEP 7: THANK YOU -->
-  <template x-if="step===8">
+  <!-- STEP 9: THANK YOU -->
+  <template x-if="step===9">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg text-center space-y-4">
       <h2 class="text-2xl">Thank you! 🎉</h2>
       <p>Your feedback has been recorded.</p>
-      <button @click="resetSurvey(); step=4"
-              class="w-full py-3 bg-blue-500 text-white rounded">Another Survey</button>
+      <button @click="resetSurvey(); step=2"
+              class="w-full py-3 bg-blue-500 text-white rounded">New Survey</button>
     </div>
   </template>
 
-  <!-- STEP 8: STATS -->
+  <!-- STEP 10: STATS -->
   <template x-if="step===9">
     <div class="max-w-3xl w-full bg-white p-6 rounded-xl shadow-lg space-y-6 overflow-auto max-h-screen">
       <div class="flex justify-between items-center">
@@ -408,6 +422,59 @@
       }
     },
 
+    brandDescriptions: {
+      brand1: {
+        name: 'Molvany',
+        poster: 'https://cdn.bndleu.com/expoMumbai2025/brand1.png',
+        desc: 'Affordable + High Quality Skincare. Beauterior = Beauty + Interior aesthetic packaging.'
+      },
+      brand2: {
+        name: "Jeu' Demeure",
+        poster: 'https://cdn.bndleu.com/expoMumbai2025/brand2.png',
+        desc: 'Luxury anti-aging with peptide tech. Reverse your age with Jeudemeure.'
+      },
+      brand3: {
+        name: 'Vegreen',
+        poster: 'https://cdn.bndleu.com/expoMumbai2025/brand3.png',
+        desc: 'Vegan, clean beauty with EWG-safe ingredients. Minimalist & effective skincare.'
+      },
+      brand4: {
+        name: 'DailyCha-e',
+        poster: 'https://cdn.bndleu.com/expoMumbai2025/brand4.png',
+        desc: 'Functional body care with vitamin C filtration. Natural, daily self-care.'
+      },
+      brand5: {
+        name: 'AreumSkincare',
+        poster: 'https://cdn.bndleu.com/expoMumbai2025/brand5.png',
+        desc: 'Flagship skincare line from AREUM. Clean, effective beauty solutions.'
+      },
+      brand6: {
+        name: 'MiriCanvas',
+        poster: 'https://cdn.bndleu.com/expoMumbai2025/miriicanvas.png',
+        desc: 'Discover Smarter Design with AI. We’re eager to learn how your team creates content—from presentations and posters to social media visuals—and where smart tools can help you do it better. Take this quick survey and receive a FREE 1-month Miricanvas voucher.'
+      }
+    },
+
+    // Modify startSurvey()
+    startSurvey() {
+      this.answers = [];
+      this.currentQuestionIndex = 0;
+      this.step = 6; // show brand intro first
+    },
+
+    // Add new method
+    startQuestions() {
+      const generic = this.getGenericQuestions(this.selectedRole);
+      const brandSpecific = this.getBrandSpecificQuestions(this.selectedBrand, this.selectedRole);
+      this.questions[this.selectedBrand] = {
+        [this.selectedRole]: [...generic, ...brandSpecific]
+      };
+      this.answers = Array(this.totalQuestions).fill(null);
+      this.currentQuestionIndex = 0;
+      this.step = 7;
+    },
+
+
       async submit() {
       this.loading = true;
       try {
@@ -461,7 +528,7 @@
       
 
       viewStats() {
-        this.step = 9;
+        this.step = 10;
         this.loadStats();
       },
 
