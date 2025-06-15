@@ -300,7 +300,7 @@
       async login() {
         this.loading = true;
         try {
-          const res = await fetch('/api/auth/login', {
+          const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/auth/login', {
             method:'POST',
             headers:{ 'Content-Type':'application/json' },
             body: JSON.stringify({ name:this.nameLogin, password:this.passwordLogin })
@@ -349,7 +349,7 @@
             email:        this.email,
             phone:        this.phone
           };
-          const res = await fetch('/api/survey/submit', {
+          const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/survey/submit', {
             method:'POST',
             headers:{
               'Content-Type':'application/json',
@@ -374,7 +374,7 @@
 
       async loadStats() {
         try {
-          const res = await fetch('/api/survey/stats', {
+          const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/survey/stats', {
             headers:{ Authorization:`Bearer ${this.authToken}` }
           });
           if (!res.ok) throw new Error();
