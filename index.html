@@ -2,298 +2,406 @@
 <html lang="en" x-data="surveyApp()" x-init="init()">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Expo Feedback</title>
-  <!-- Tailwind via CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Alpine.js -->
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <!-- Canvas-Confetti -->
+  <!-- Confetti -->
   <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4 relative">
 
-  <!-- Global Header: Areum logo with Logout & Quit -->
-  <div x-show="step > 1" class="absolute top-4 right-4 flex items-center space-x-4">
-    <img src="https://cdn.bndleu.com/expoMumbai2025/areumLogo.png" alt="Areum Logo" class="h-8 w-auto" />
-    <button @click="logout()" class="text-sm text-red-600 underline hover:text-red-800">Logout</button>
-    <template x-if="step >= 3 && step <= 6">
-      <button @click="confirmQuit()" class="text-sm text-gray-600 underline hover:text-gray-800">Quit</button>
-    </template>
+  <!-- GLOBAL HEADER -->
+  <div x-show="step>1" class="absolute top-4 right-4 flex items-center space-x-4">
+    <img src="https://cdn.bndleu.com/expoMumbai2025/areumLogo.png" class="h-8" alt="Logo"/>
+    <button @click="viewStats()" class="text-sm text-blue-600 underline hover:text-blue-800">Stats</button>
+    <button @click="logout()"     class="text-sm text-red-600  underline hover:text-red-800">Logout</button>
   </div>
 
-  <!-- SCREEN 1: LOGIN -->
-  <template x-if="step === 1">
+  <!-- STEP 1: LOGIN -->
+  <template x-if="step===1">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
-      <img src="https://cdn.bndleu.com/expoMumbai2025/areumLogo.png" alt="Areum Logo" class="h-12 mx-auto mb-4" />
-      <h2 class="text-2xl font-semibold text-center">Welcome — Team Login</h2>
-      <input x-model="nameLogin" type="text" placeholder="Your Name" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400" />
-      <input x-model="passwordLogin" type="password" placeholder="Password" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400" />
-      <button @click="login()" :disabled="!nameLogin || !passwordLogin || loading" class="w-full py-3 bg-blue-500 text-white rounded disabled:opacity-50">
-        <span x-show="!loading">Login</span><span x-show="loading">…</span>
+      <img src="https://cdn.bndleu.com/expoMumbai2025/areumLogo.png" class="h-12 mx-auto" alt="Logo"/>
+      <h2 class="text-2xl font-semibold text-center">Team Login</h2>
+      <input x-model="nameLogin"     type="text"     placeholder="Name"     class="w-full p-3 border rounded"/>
+      <input x-model="passwordLogin" type="password" placeholder="Password" class="w-full p-3 border rounded"/>
+      <button @click="login()"
+              :disabled="!nameLogin||!passwordLogin||loading"
+              class="w-full py-3 bg-blue-500 text-white rounded disabled:opacity-50">
+        <span x-text="loading ? '…' : 'Login'"></span>
       </button>
-      <div class="text-center text-xs text-gray-500 mt-4">AReum in partnership with Versionwhale Private Limited</div>
     </div>
   </template>
 
-  <!-- SCREEN 2: BRAND SELECTION -->
-  <template x-if="step === 2">
+  <!-- STEP 2: LANGUAGE -->
+  <template x-if="step===2">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
+      <h2 class="text-2xl font-semibold text-center">Choose Language</h2>
+      <template x-for="lang in languages" :key="lang.code">
+        <label class="flex items-center space-x-3 p-3 border rounded cursor-pointer">
+          <input type="radio" name="lang" :value="lang.code" x-model="selectedLanguage" class="form-radio"/>
+          <span x-text="lang.label"></span>
+        </label>
+      </template>
+      <button @click="step=3"
+              :disabled="!selectedLanguage"
+              class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
+    </div>
+  </template>
+
+  <!-- STEP 3: ROLE -->
+  <template x-if="step===3">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
+      <h2 class="text-2xl font-semibold text-center">What best describes you?</h2>
+      <template x-for="role in roles" :key="role.id">
+        <label class="flex items-center space-x-3 p-3 border rounded cursor-pointer">
+          <input type="radio" name="role" :value="role.id" x-model="selectedRole" class="form-radio"/>
+          <span x-text="role.label"></span>
+        </label>
+      </template>
+      <button @click="step=4"
+              :disabled="!selectedRole"
+              class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
+    </div>
+  </template>
+
+  <!-- STEP 4: BRAND -->
+  <template x-if="step===4">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
       <h2 class="text-2xl font-semibold text-center">Select Brand</h2>
       <template x-for="brand in brands" :key="brand.id">
-        <label class="flex items-center space-x-3 p-3 border rounded cursor-pointer hover:bg-gray-50">
-          <input type="radio" name="brand" :value="brand.id" x-model="selectedBrand" class="form-radio h-5 w-5" />
-          <img :src="brand.logoUrl" alt="Brand Logo" class="h-8 w-8 object-contain" />
-          <span x-text="brand.name" class="ml-2 font-medium"></span>
+        <label class="flex items-center space-x-3 p-3 border rounded cursor-pointer">
+          <input type="radio" name="brand" :value="brand.id" x-model="selectedBrand" class="form-radio"/>
+          <img :src="brand.logoUrl" class="h-8 w-8 object-contain" alt="Brand"/>
+          <span x-text="brand.name"></span>
         </label>
       </template>
-      <button @click="step = 3" :disabled="!selectedBrand" class="mt-4 w-full py-3 bg-blue-500 text-white rounded disabled:opacity-50">Next</button>
-      <div class="text-center text-xs text-gray-500 mt-4">AReum in partnership with Versionwhale Private Limited</div>
+      <button @click="startSurvey()"
+              :disabled="!selectedBrand"
+              class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
     </div>
   </template>
 
-  <!-- SCREEN 3: BEGIN SURVEY -->
-  <template x-if="step === 3">
-    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg flex flex-col items-center space-y-6">
-      <h2 class="text-3xl font-semibold">Ready to start?</h2>
-      <button @click="step = 4" class="px-8 py-4 bg-green-500 text-white rounded text-lg">Begin Survey</button>
-      <div class="text-center text-xs text-gray-500 mt-4">AReum in partnership with Versionwhale Private Limited</div>
-    </div>
-  </template>
-
-  <!-- SCREEN 4: STAR RATING -->
-  <template x-if="step === 4">
+  <!-- STEP 5: DYNAMIC QUESTIONS -->
+  <template x-if="step===5">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6">
-      <div class="flex items-center justify-center space-x-2 mb-2">
-        <img :src="brands.find(b => b.id === selectedBrand)?.logoUrl" alt="Brand Logo" class="h-8 w-8 object-contain" />
-        <span x-text="brands.find(b => b.id === selectedBrand)?.name" class="text-lg font-semibold"></span>
-      </div>
-      <h2 class="text-2xl font-semibold text-center">
-        How would you rate your experience with
-        <span x-text="brands.find(b => b.id === selectedBrand)?.name" class="underline"></span>?
+      <h2 class="text-xl font-semibold text-center">
+        {{ currentQuestionIndex+1 }} of {{ totalQuestions }}:
+        <span x-text="currentQuestion.text"></span>
       </h2>
-      <div class="flex justify-center space-x-2">
+      <!-- rating -->
+      <div x-show="currentQuestion.type==='rating'" class="flex justify-center space-x-2">
         <template x-for="i in 5" :key="i">
-          <svg @click="rating = i" :class="rating >= i ? 'text-yellow-400' : 'text-gray-300'" xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 cursor-pointer transition-colors" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927C9.349 2.025 10.651 2.025 10.951 2.927l1.286 3.965a1 1 0 00.950.690h4.175c.969 0 1.371 1.240.588 1.810l-3.383 2.460a1 1 0 00-.364 1.118l1.286 3.965c.300.902-.755 1.650-1.538 1.118L10 13.347l-3.383 2.460c-.783.532-1.838-.216-1.538-1.118l1.286-3.965a1 1 0 00-.364-1.118L2.618 9.392c-.783-.570-.381-1.810.588-1.810h4.175a1 1 0 00.950-.690l1.286-3.965z"/>
+          <svg @click="recordAnswer(i)"
+               :class="answers[currentQuestionIndex]>=i ? 'text-yellow-400' : 'text-gray-300'"
+               class="h-10 w-10 cursor-pointer transition-colors"
+               fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927C...Z"/>
           </svg>
         </template>
       </div>
-      <button @click="step = 5" :disabled="rating === 0" class="w-full py-3 bg-blue-500 text-white rounded disabled:opacity-50">Next</button>
-      <div class="text-center text-xs text-gray-500 mt-4">AReum in partnership with Versionwhale Private Limited</div>
-    </div>
-  </template>
-
-  <!-- SCREEN 5: OPEN FEEDBACK -->
-  <template x-if="step === 5">
-    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
-      <div class="flex items-center justify-center space-x-2 mb-2">
-        <img :src="brands.find(b => b.id === selectedBrand)?.logoUrl" alt="Brand Logo" class="h-8 w-8 object-contain" />
-        <span x-text="brands.find(b => b.id === selectedBrand)?.name" class="text-lg font-semibold"></span>
+      <!-- text -->
+      <div x-show="currentQuestion.type==='text'">
+        <textarea x-model="answers[currentQuestionIndex]"
+                  rows="3"
+                  class="w-full p-3 border rounded"></textarea>
       </div>
-      <h2 class="text-2xl font-semibold text-center">Any quick feedback?</h2>
-      <textarea x-model="comment" rows="3" placeholder="Type here…" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-green-400"></textarea>
-      <button @click="step = 6" class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
-      <div class="text-center text-xs text-gray-500 mt-4">AReum in partnerships with Versionwhale Private Limited</div>
+      <button @click="nextQuestion()"
+              :disabled="!answers[currentQuestionIndex]"
+              class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
     </div>
   </template>
 
-  <!-- SCREEN 6: CONTACT INFO & SUBMIT -->
-  <template x-if="step === 6">
+  <!-- STEP 6: CONTACT -->
+  <template x-if="step===6">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
-      <h2 class="text-2xl font-semibold text-center">Your Contact Info</h2>
+      <h2 class="text-xl font-semibold text-center">Your Contact Info</h2>
 
-      <!-- Name (required) -->
-      <input x-model="name" type="text" placeholder="Name" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      <!-- B2B -->
+      <template x-if="selectedRole==='b2b'">
+        <input x-model="companyName" type="text"     placeholder="Company Name" class="w-full p-3 border rounded"/>
+        <input x-model="email"       type="email"    placeholder="Work Email"   class="w-full p-3 border rounded"/>
+        <input x-model="phone"       type="tel"      placeholder="Work Phone"   maxlength="10" class="w-full p-3 border rounded"/>
+      </template>
 
-      <!-- Email (optional) -->
-      <input x-model="email" type="email" placeholder="Email (optional)" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-red-400" />
-      <p x-show="email && !emailValid" class="text-xs text-red-500">Enter a valid email.</p>
+      <!-- D2C -->
+      <template x-if="selectedRole==='d2c'">
+        <input x-model="email" type="email" placeholder="Email"             class="w-full p-3 border rounded"/>
+        <input x-model="phone" type="tel"   placeholder="Phone (optional)" maxlength="10" class="w-full p-3 border rounded"/>
+      </template>
 
-      <!-- Phone (optional) -->
-      <div class="flex space-x-2">
-        <select x-model="phoneCode" class="w-1/3 p-3 border rounded focus:ring-2 focus:ring-yellow-400">
-          <option value="">Code</option>
-          <template x-for="code in countryCodes" :key="code">
-            <option :value="code" x-text="code"></option>
+      <button @click="submit()"
+              :disabled="!contactValid"
+              class="w-full py-3 bg-green-500 text-white rounded">Submit</button>
+    </div>
+  </template>
+
+  <!-- STEP 7: THANK YOU -->
+  <template x-if="step===7">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg text-center space-y-4">
+      <h2 class="text-2xl">Thank you! 🎉</h2>
+      <p>Your feedback has been recorded.</p>
+      <button @click="resetSurvey(); step=4"
+              class="w-full py-3 bg-blue-500 text-white rounded">Another Survey</button>
+    </div>
+  </template>
+
+  <!-- STEP 8: STATS -->
+  <template x-if="step===8">
+    <div class="max-w-3xl w-full bg-white p-6 rounded-xl shadow-lg space-y-6 overflow-auto max-h-screen">
+      <h2 class="text-2xl font-semibold text-center">Survey Statistics</h2>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>Total Responses: <strong x-text="stats.totalResponses"/></div>
+        <div>B2B: <strong x-text="stats.countByRole.b2b"/></div>
+        <div>D2C: <strong x-text="stats.countByRole.d2c"/></div>
+        <div>
+          Responses per Brand:
+          <ul class="list-disc list-inside">
+            <template x-for="(cnt, b) in stats.countByBrand" :key="b">
+              <li><span x-text="b"/>: <span x-text="cnt"/></li>
+            </template>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-semibold">Question Summaries</h3>
+      <template x-for="q in stats.questionStats" :key="q.question">
+        <div class="p-4 border rounded space-y-2">
+          <div class="font-medium" x-text="q.question"/>
+          <ul class="list-disc list-inside">
+            <template x-for="opt in q.options" :key="opt.value">
+              <li><span x-text="opt.value"/>: <span x-text="opt.count"/></li>
+            </template>
+          </ul>
+        </div>
+      </template>
+
+      <h3 class="text-xl font-semibold">All Responses</h3>
+      <table class="w-full table-auto border-collapse">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="border p-2">ID</th>
+            <th class="border p-2">Role</th>
+            <th class="border p-2">Brand</th>
+            <th class="border p-2">Date</th>
+            <th class="border p-2">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <template x-for="r in stats.allResponses" :key="r.id">
+            <tr>
+              <td class="border p-2" x-text="r.id"/>
+              <td class="border p-2" x-text="r.role"/>
+              <td class="border p-2" x-text="r.brand_id"/>
+              <td class="border p-2" x-text="new Date(r.submitted_at).toLocaleString()"/>
+              <td class="border p-2">
+                <button @click="viewDetails(r)" class="text-blue-600 underline">View</button>
+              </td>
+            </tr>
           </template>
-        </select>
-        <input x-model="phoneNumber" type="tel" placeholder="10-digit phone" maxlength="10" class="flex-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-yellow-400" />
-      </div>
-      <p x-show="phoneNumber && !phoneValid" class="text-xs text-red-500">Enter a 10-digit phone with country code.</p>
-
-      <!-- Submit -->
-      <button @click="submit()" :disabled="loading || !name || !contactProvided" class="w-full py-3 bg-green-500 text-white rounded disabled:opacity-50">
-        <span x-show="!loading">Submit</span><span x-show="loading">…</span>
-      </button>
-      <div class="text-center text-xs text-gray-500 mt-4">AReum in partnerships with Versionwhale Private Limited</div>
+        </tbody>
+      </table>
     </div>
   </template>
 
-  <!-- SCREEN 7: NEXT ACTION -->
-  <template x-if="step === 7">
-    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4 text-center">
-      <img src="https://cdn.bndleu.com/expoMumbai2025/areumLogo.png" alt="Areum Logo" class="h-12 mx-auto mb-4" />
-      <h2 class="text-2xl font-semibold">Thank you! 🎉</h2>
-      <p class="text-gray-600">What would you like to do next?</p>
-      <button @click="resetSurvey(); step = 2" class="w-full py-3 bg-blue-500 text-white rounded">Switch Brand</button>
-      <button @click="resetSurvey(); step = 3" class="w-full py-3 bg-green-500 text-white rounded">Continue Same Brand</button>
-      <div class="text-center text-xs text-gray-500 mt-4">AReum in partnerships with Versionwhale Private Limited</div>
-    </div>
-  </template>
-
-  <!-- Alpine State & Methods -->
+  <!-- Alpine Component -->
   <script>
-    function surveyApp() {
-      return {
-        /* — State — */
-        step: 1,
-        loading: false,
-        authToken: '',
-        userId: null,
-        nameLogin: '',
-        passwordLogin: '',
-        selectedBrand: null,
-        brands: [
-          { id: 'brand1', name: 'Molvany', logoUrl: 'https://cdn.bndleu.com/expoMumbai2025/brand1.png' },
-          { id: 'brand2', name: "Jeu' Demeure", logoUrl: 'https://cdn.bndleu.com/expoMumbai2025/brand2.png' },
-          { id: 'brand3', name: 'Vegreen', logoUrl: 'https://cdn.bndleu.com/expoMumbai2025/brand3.png' },
-          { id: 'brand4', name: 'DailyCha-e', logoUrl: 'https://cdn.bndleu.com/expoMumbai2025/brand4.png' },
-          { id: 'brand5', name: 'AreumSkincare', logoUrl: 'https://cdn.bndleu.com/expoMumbai2025/brand5.png' }
-        ],
-        rating: 0,
-        comment: '',
-        name: '',
-        email: '',
-        phoneCode: '',
-        phoneNumber: '',
-        countryCodes: [],
+  function surveyApp() {
+    return {
+      step: 1,
+      loading: false,
+      authToken: '',
+      userId: null,
 
-        /* — Computed — */
-        get emailValid() {
-          return this.email === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
-        },
-        get phoneValid() {
-          return (
-            this.phoneCode &&
-            this.phoneNumber.length === 10 &&
-            /^[0-9]{10}$/.test(this.phoneNumber)
-          );
-        },
-        get contactProvided() {
-          return (this.email && this.emailValid) || (this.phoneNumber && this.phoneValid);
-        },
+      // login
+      nameLogin: '',
+      passwordLogin: '',
 
-        /* — Lifecycle — */
-        init() {
-          // restore token
-          const token = sessionStorage.getItem('authToken');
-          if (token) {
-            this.authToken = token;
-            this.userId    = JSON.parse(atob(token.split('.')[1])).id;
-            this.step      = 2;
-          }
+      // flow
+      languages: [
+        { code:'en', label:'English' },
+        { code:'hi', label:'Hindi'   },
+        { code:'mr', label:'Marathi' }
+      ],
+      selectedLanguage: '',
 
-          // fetch country codes
-          fetch('https://restcountries.com/v2/all?fields=callingCodes')
-            .then(res => {
-              if (!res.ok) throw new Error(res.status);
-              return res.json();
-            })
-            .then(data => {
-              this.countryCodes = Array.from(
-                new Set(
-                  data
-                    .flatMap(c => c.callingCodes)
-                    .filter(Boolean)
-                    .map(code => '+' + code)
-                )
-              ).sort((a, b) => parseInt(a.slice(1)) - parseInt(b.slice(1)));
-            })
-            .catch(err => {
-              console.error('Could not load country codes', err);
-              this.countryCodes = ['+91', '+1', '+44', '+61', '+81'];
-            });
-        },
+      roles: [
+        { id:'b2b', label:'Business' },
+        { id:'d2c', label:'Consumer' }
+      ],
+      selectedRole: '',
 
-        /* — Actions — */
-        async login() {
-          this.loading = true;
-          try {
-            const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/auth/login', {
-              method: 'POST',
-              headers: { 'Content-Type':'application/json' },
-              body: JSON.stringify({ name: this.nameLogin, password: this.passwordLogin })
-            });
-            if (!res.ok) throw new Error('Invalid credentials');
-            const { token } = await res.json();
-            this.authToken = token;
-            sessionStorage.setItem('authToken', token);
-            this.userId = JSON.parse(atob(token.split('.')[1])).id;
-            this.step = 2;
-          } catch (err) {
-            alert('Login failed: ' + err.message);
-          } finally {
-            this.loading = false;
-          }
-        },
+      brands: [
+        { id:'brand1', name:'Molvany',    logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand1.png' },
+        { id:'brand2', name:"Jeu' Demeure", logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand2.png' },
+        { id:'brand3', name:'Vegreen',    logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand3.png' },
+        { id:'brand4', name:'DailyCha-e', logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand4.png' },
+        { id:'brand5', name:'AreumSkincare', logoUrl:'https://cdn.bndleu.com/expoMumbai2025/brand5.png' }
+      ],
+      selectedBrand: '',
 
-        confirmQuit() {
-          if (confirm('Your feedback will not be saved if you exit now. Continue?')) {
-            this.resetSurvey();
-            this.step = 2;
-          }
-        },
+      // dynamic Qs
+      questions: {},
+      currentQuestionIndex: 0,
+      answers: [],
 
-        resetSurvey() {
-          this.selectedBrand = null;
-          this.rating        = 0;
-          this.comment       = '';
-          this.name          = '';
-          this.email         = '';
-          this.phoneCode     = '';
-          this.phoneNumber   = '';
-        },
+      // contact
+      companyName: '',
+      email: '',
+      phone: '',
 
-        async submit() {
-          this.loading = true;
-          try {
-            const payload = {
-              userId: this.userId,
-              brandId: this.selectedBrand,
-              rating: this.rating,
-              comment: this.comment,
-              name: this.name,
-              email: this.emailValid   ? this.email        : '',
-              phone: this.phoneValid   ? this.phoneCode + this.phoneNumber : ''
-            };
-            const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/survey/submit', {
-              method:'POST',
-              headers: {
-                'Content-Type':'application/json',
-                Authorization:`Bearer ${this.authToken}`
-              },
-              body: JSON.stringify(payload)
-            });
-            if (!res.ok) throw new Error(`Submit failed (${res.status})`);
-            this.step = 7;
-            confetti({ spread:60, ticks:200 });
-          } catch(err) {
-            alert('Error: ' + err.message);
-          } finally {
-            this.loading = false;
-          }
-        },
+      // stats
+      stats: {
+        totalResponses: 0,
+        countByRole: { b2b:0, d2c:0 },
+        countByBrand: {},
+        questionStats: [],
+        allResponses: []
+      },
 
-        logout() {
-          sessionStorage.clear();
-          this.authToken = '';
-          this.userId    = null;
-          this.step      = 1;
+      // getters
+      get currentQuestion() {
+        return this.questions[this.selectedBrand][this.selectedRole][this.currentQuestionIndex];
+      },
+      get totalQuestions() {
+        return this.questions[this.selectedBrand][this.selectedRole].length;
+      },
+      get contactValid() {
+        if (this.selectedRole === 'b2b') {
+          return this.companyName && this.email && this.phone.length === 10;
         }
-      };
-    }
-  </script>
+        return this.email || this.phone.length === 10;
+      },
 
+      init() {
+        // restore session
+        const t = sessionStorage.getItem('authToken');
+        if (t) {
+          this.authToken = t;
+          this.userId    = JSON.parse(atob(t.split('.')[1])).id;
+          this.step      = 2;
+        }
+
+        // build dummy questions (5 per brand×role)
+        this.brands.forEach(b => {
+          this.questions[b.id] = {};
+          ['b2b','d2c'].forEach(r => {
+            this.questions[b.id][r] = Array.from({ length:5 }, (_, i) => ({
+              type: i % 2 === 0 ? 'rating' : 'text',
+              text: `Question ${i+1} for ${b.name} (${r.toUpperCase()})`
+            }));
+          });
+        });
+      },
+
+      async login() {
+        this.loading = true;
+        try {
+          const res = await fetch('/api/auth/login', {
+            method:'POST',
+            headers:{ 'Content-Type':'application/json' },
+            body: JSON.stringify({ name:this.nameLogin, password:this.passwordLogin })
+          });
+          if (!res.ok) throw new Error('Invalid credentials');
+          const { token } = await res.json();
+          sessionStorage.setItem('authToken', token);
+          this.authToken = token;
+          this.userId    = JSON.parse(atob(token.split('.')[1])).id;
+          this.step      = 2;
+        } catch (e) {
+          alert('Login failed');
+        } finally {
+          this.loading = false;
+        }
+      },
+
+      startSurvey() {
+        this.answers = Array(this.totalQuestions).fill(null);
+        this.currentQuestionIndex = 0;
+        this.step = 5;
+      },
+
+      recordAnswer(val) {
+        this.answers[this.currentQuestionIndex] = val;
+      },
+
+      nextQuestion() {
+        if (this.currentQuestionIndex + 1 < this.totalQuestions) {
+          this.currentQuestionIndex++;
+        } else {
+          this.step = 6;
+        }
+      },
+
+      async submit() {
+        this.loading = true;
+        try {
+          const payload = {
+            language:     this.selectedLanguage,
+            role:         this.selectedRole,
+            brandId:      this.selectedBrand,
+            answers:      this.answers,
+            companyName:  this.selectedRole==='b2b' ? this.companyName : null,
+            name:         this.selectedRole==='d2c' ? this.companyName : null,
+            email:        this.email,
+            phone:        this.phone
+          };
+          const res = await fetch('/api/survey/submit', {
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json',
+              Authorization:`Bearer ${this.authToken}`
+            },
+            body: JSON.stringify(payload)
+          });
+          if (!res.ok) throw new Error('Submit failed');
+          this.step = 7;
+          confetti({ spread:60, ticks:200 });
+        } catch(e) {
+          alert('Submit error');
+        } finally {
+          this.loading = false;
+        }
+      },
+
+      viewStats() {
+        this.step = 8;
+        this.loadStats();
+      },
+
+      async loadStats() {
+        try {
+          const res = await fetch('/api/survey/stats', {
+            headers:{ Authorization:`Bearer ${this.authToken}` }
+          });
+          if (!res.ok) throw new Error();
+          this.stats = await res.json();
+        } catch(e) {
+          console.error('Stats load error', e);
+        }
+      },
+
+      viewDetails(r) {
+        alert(JSON.stringify(r, null, 2));
+      },
+
+      resetSurvey() {
+        this.step = 4;
+        this.selectedBrand = '';
+        this.currentQuestionIndex = 0;
+        this.answers = [];
+        this.companyName = this.email = this.phone = '';
+      },
+
+      logout() {
+        sessionStorage.clear();
+        this.step = 1;
+      }
+    }
+  }
+  </script>
 </body>
 </html>
