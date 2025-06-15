@@ -71,8 +71,26 @@
   </template>
 
 
+  <!-- STEP 4: Skip Role for MiriCanvas -->
+<template x-if="step===4 && selectedBrand==='brand6'">
+  <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg text-center space-y-4">
+    <h2 class="text-xl font-semibold">Welcome, Content Creators!</h2>
+    <p class="text-gray-600">
+      This Miricanvas survey is designed for professionals creating presentations, social media, and marketing visuals.
+    </p>
+
+    <p class="text-sm text-gray-500 italic">
+      (Your responses will help shape future AI design tools.)
+    </p>
+    <button @click="selectedRole='b2b'; step=5"
+            class="w-full py-3 bg-blue-500 text-white rounded">Continue</button>
+  </div>
+</template>
+
   <!-- STEP 4: ROLE -->
   <template x-if="step===4">
+    <template x-if="!isMiriCanvas">
+
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
       <h2 class="text-2xl font-semibold text-center">What best describes you?</h2>
       <template x-for="role in roles" :key="role.id">
@@ -85,6 +103,7 @@
               :disabled="!selectedRole"
               class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
     </div>
+    </template>
   </template>
 
   <!-- STEP 5: BRAND -->
@@ -457,12 +476,26 @@
       }
     },
 
+
     // Modify startSurvey()
-    startSurvey() {
+    init() {
+      this.loadExternalQuestions();
+    },
+
+      startSurvey() {
       this.answers = [];
       this.currentQuestionIndex = 0;
-      this.step = 6; // show brand intro first
+      // Shortcut role step for MiriCanvas
+      if (this.selectedBrand === 'brand6') {
+        this.selectedRole = 'b2b'; // force B2B
+        this.step = 4;             // show content creator screen
+      } else {
+        this.step = 4;             // normal role screen
+      }
+
     },
+
+    
 
     // Add new method
     startQuestions() {
@@ -476,8 +509,26 @@
       this.step = 7;
     },
 
+    // Load questions from external JSON file
+    getGenericQuestions(role) {
+      return this.externalQuestions?.generic?.[role] || [];
+    },
 
-      async submit() {
+    getBrandSpecificQuestions(brandId, role) {
+      return this.externalQuestions?.brands?.[brandId]?.[role] || [];
+    },
+
+    async loadExternalQuestions() {
+      try {
+        const res = await fetch('/questions.json');
+        if (!res.ok) throw new Error();
+        this.externalQuestions = await res.json();
+      } catch (e) {
+        console.error('Failed to load question set:', e);
+      }
+    },
+
+    async submit() {
       this.loading = true;
       try {
         const rating = this.answers.find(a => typeof a === 'number') ?? null;
