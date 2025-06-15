@@ -38,18 +38,20 @@
 
     <!-- STEP 2: WELCOME SCREEN -->
   <template x-if="step===2">
-    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6 text-center">
-      <img src="https://cdn.bndleu.com/expoMumbai2025/areumLogo.png" class="h-12 mx-auto" alt="Logo"/>
-      <h2 class="text-2xl font-semibold">AREUM x K-Beauty Mumbai 2025</h2>
-      <p class="text-gray-700">
-        Thank you for visiting AREUM at Beautech Mumbai 2025.<br>
-        Please take 1 minute to complete this survey so we can better support your interest.<br>
-        We'll follow up with catalogs, price lists, or samples based on your input.
-      </p>
-      <button @click="step=3"
-              class="w-full py-3 bg-blue-500 text-white rounded">Begin Survey</button>
-    </div>
-  </template>
+  <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6 text-center">
+    <img src="https://cdn.bndleu.com/expoMumbai2025/areumLogo.png" class="h-12 mx-auto" alt="Logo"/>
+    <h2 class="text-2xl font-semibold">AREUM x K-Beauty Mumbai 2025</h2>
+    <p class="text-gray-700">
+      Thank you for visiting AREUM at Beautech Mumbai 2025.<br>
+      Please take 1 minute to complete this survey so we can better support your interest.<br>
+      We'll follow up with catalogs, price lists, or samples based on your input.
+    </p>
+    <p class="text-xs text-gray-500 mt-2">
+      By continuing, I consent to the use of my responses and contact information for market research purposes and to receive relevant follow-ups from the participating brand(s), in line with standard data protection and privacy policies.
+    </p>
+    <button @click="step=3" class="w-full py-3 bg-blue-500 text-white rounded">Begin Survey</button>
+  </div>
+</template>
 
 
   <!-- STEP 3: LANGUAGE -->
