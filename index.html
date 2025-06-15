@@ -87,9 +87,9 @@
   <!-- STEP 5: QUESTIONS -->
   <template x-if="step===5">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6">
-      <h2 class="text-xl font-semibold text-center"
-          x-text="`${currentQuestionIndex+1} of ${totalQuestions}: ${currentQuestion.text}`">
-      </h2>
+       <h2 class="text-xl font-semibold text-center"
+        x-text="`${currentQuestionIndex+1} of ${totalQuestions}: ${currentQuestion.text}`">
+     </h2>
 
       <!-- Rating -->
       <div x-show="currentQuestion.type==='rating'" class="flex justify-center space-x-2">
@@ -377,7 +377,7 @@
           console.error('Stats load error',e);
         }
         },
-        
+
       viewDetails(r) {
         alert(JSON.stringify(r, null, 2));
       },
