@@ -124,7 +124,7 @@
     <p class="text-sm text-gray-500 italic">
       (Your responses will help shape future AI design tools.)
     </p>
-    <button @click="selectedRole='b2b'; step=8"
+    <button @click="selectedRole='b2b'; startQuestions()"
             class="w-full py-3 bg-blue-500 text-white rounded">Continue</button>
   </div>
 </template>
@@ -141,7 +141,7 @@
           <span x-text="role.label"></span>
         </label>
       </template>
-      <button @click="step=8"
+      <button @click="startQuestions()"
               :disabled="!selectedRole"
               class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
     </div>
