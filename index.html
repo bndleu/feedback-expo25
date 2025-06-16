@@ -199,13 +199,22 @@
 
           <!-- Multiple Choice (radio) -->
     <div x-show="currentQuestion.type==='multiple'">
-      <template x-for="opt in currentQuestion.options" :key="opt">
-        <label class="flex items-center space-x-3 p-2 border rounded cursor-pointer">
-          <input type="radio" :value="opt" x-model="answers[currentQuestionIndex]" class="form-radio"/>
-          <span x-text="opt"></span>
-        </label>
-      </template>
-    </div>
+          <template x-for="opt in currentQuestion.options" :key="opt">
+            <div>
+              <label class="flex items-center space-x-3 p-2 border rounded cursor-pointer">
+                <input type="radio" :value="opt" x-model="answers[currentQuestionIndex]" class="form-radio"/>
+                <span x-text="opt"></span>
+              </label>
+              <div x-show="opt.toLowerCase().includes('other') && answers[currentQuestionIndex] === opt">
+                <input type="text"
+                      x-model="answers[currentQuestionIndex + '_other']"
+                      placeholder="Please specify"
+                      class="mt-2 p-2 border rounded w-full"/>
+              </div>
+            </div>
+          </template>
+        </div>
+
 
     <!-- Checkbox (multi-select) -->
     <div x-show="currentQuestion.type==='checkbox'">
