@@ -65,14 +65,7 @@
         </label>
       </template>
       <button
-        @click="
-          if (selectedBrand === 'brand6') {
-            selectedRole = 'b2b';
-            step = 4;
-          } else {
-            step = 4;
-          }
-        "
+        @click="step = 4;"
         :disabled="!selectedLanguage"
         class="w-full py-3 bg-blue-500 text-white rounded">
         Next
@@ -80,8 +73,48 @@
   </template>
 
 
-  <!-- STEP 4: Skip Role for MiriCanvas -->
-<template x-if="step===4 && selectedBrand==='brand6'">
+  <!-- STEP 4: BRAND -->
+  <template x-if="step===4">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
+      <h2 class="text-2xl font-semibold text-center">Select Brand</h2>
+      <template x-for="brand in brands" :key="brand.id">
+        <label class="flex items-center space-x-3 p-3 border rounded cursor-pointer">
+          <input type="radio" name="brand" :value="brand.id" x-model="selectedBrand" class="form-radio"/>
+          <img :src="brand.logoUrl" class="h-8 w-8 object-contain" alt="Brand"/>
+          <span x-text="brand.name"></span>
+        </label>
+      </template>
+      <button
+        @click="
+          if (selectedBrand === 'brand6') {
+            selectedRole = 'b2b';
+            startSurvey();
+          } else {
+            startSurvey();
+          }
+        "
+       :disabled="!selectedBrand"
+
+        class="w-full py-3 bg-blue-500 text-white rounded">
+        Next
+      </button>
+    </div>
+  </template>
+
+  
+
+  <!-- New STEP 5: BRAND INTRO -->
+<template x-if="step===5">
+  <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6 text-center">
+    <img :src="brandDescriptions[selectedBrand].poster" class="h-24 mx-auto object-contain" alt="Brand Poster"/>
+    <h2 class="text-2xl font-semibold" x-text="brandDescriptions[selectedBrand].name"/>
+    <p class="text-gray-700" x-text="brandDescriptions[selectedBrand].desc"/>
+    <button @click="startQuestions()" class="w-full py-3 bg-blue-500 text-white rounded">Continue</button>
+  </div>
+</template>
+
+  <!-- STEP 6: Skip Role for MiriCanvas -->
+<template x-if="step===6 && selectedBrand==='brand6'">
   <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg text-center space-y-4">
     <h2 class="text-xl font-semibold">Welcome, Content Creators!</h2>
     <p class="text-gray-600">
@@ -91,13 +124,13 @@
     <p class="text-sm text-gray-500 italic">
       (Your responses will help shape future AI design tools.)
     </p>
-    <button @click="selectedRole='b2b'; step=5"
+    <button @click="selectedRole='b2b'; step=7"
             class="w-full py-3 bg-blue-500 text-white rounded">Continue</button>
   </div>
 </template>
 
-  <!-- STEP 4: ROLE -->
-  <template x-if="step===4 && !isMiriCanvas">
+  <!-- STEP 7: ROLE -->
+  <template x-if="step===7 && !isMiriCanvas">
 
 
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
@@ -115,34 +148,7 @@
     
   </template>
 
-  <!-- STEP 5: BRAND -->
-  <template x-if="step===5">
-    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
-      <h2 class="text-2xl font-semibold text-center">Select Brand</h2>
-      <template x-for="brand in brands" :key="brand.id">
-        <label class="flex items-center space-x-3 p-3 border rounded cursor-pointer">
-          <input type="radio" name="brand" :value="brand.id" x-model="selectedBrand" class="form-radio"/>
-          <img :src="brand.logoUrl" class="h-8 w-8 object-contain" alt="Brand"/>
-          <span x-text="brand.name"></span>
-        </label>
-      </template>
-      <button @click="startSurvey()"
-              :disabled="!selectedBrand"
-              class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
-    </div>
-  </template>
-
-  <!-- New STEP 6: BRAND INTRO -->
-<template x-if="step===6">
-  <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6 text-center">
-    <img :src="brandDescriptions[selectedBrand].poster" class="h-24 mx-auto object-contain" alt="Brand Poster"/>
-    <h2 class="text-2xl font-semibold" x-text="brandDescriptions[selectedBrand].name"/>
-    <p class="text-gray-700" x-text="brandDescriptions[selectedBrand].desc"/>
-    <button @click="startQuestions()" class="w-full py-3 bg-blue-500 text-white rounded">Continue</button>
-  </div>
-</template>
-
-  <!-- STEP 7: QUESTIONS -->
+  <!-- STEP 8: QUESTIONS -->
   <template x-if="step===7">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6">
        <h2 class="text-xl font-semibold text-center"
@@ -205,9 +211,9 @@
     </div>
   </template>
 
-    <!-- STEP 8: QUESTIONS -->
+    <!-- STEP 9: QUESTIONS -->
 
-<template x-if="step === 8">
+<template x-if="step === 9">
   <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
     <h2 class="text-xl font-semibold text-center">Your Contact Info</h2>
 
@@ -249,7 +255,7 @@
 </template>
 
 
-  <!-- STEP 9: THANK YOU -->
+  <!-- STEP 10: THANK YOU -->
   <template x-if="step===9">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg text-center space-y-4">
       <h2 class="text-2xl">Thank you! 🎉</h2>
@@ -259,7 +265,7 @@
     </div>
   </template>
 
-  <!-- STEP 10: STATS -->
+  <!-- STEP 11: STATS -->
   <template x-if="step===9">
     <div class="max-w-3xl w-full bg-white p-6 rounded-xl shadow-lg space-y-6 overflow-auto max-h-screen">
       <div class="flex justify-between items-center">
@@ -497,9 +503,9 @@
       // Shortcut role step for MiriCanvas
       if (this.selectedBrand === 'brand6') {
         this.selectedRole = 'b2b'; // force B2B
-        this.step = 4;             // show content creator screen
+        this.step = 5;             // show content creator screen
       } else {
-        this.step = 4;             // normal role screen
+        this.step = 5;             // normal role screen
       }
 
     },
