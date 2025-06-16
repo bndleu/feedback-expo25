@@ -265,54 +265,6 @@
     "brand4": {
       "b2b": [
         {
-          "type": "text",
-          "text": "Are you currently working with sensitive-skin-focused or skin barrier repair products?"
-        },
-        {
-          "type": "text",
-          "text": "Do you carry products suitable for post-treatment care or dermatology clinics?"
-        },
-        {
-          "type": "text",
-          "text": "How important is low-irritation, high-function skincare for your customer base?"
-        }
-      ],
-      "d2c": [
-        {
-          "type": "multiple",
-          "text": "Do you have sensitive or reactive skin?",
-          "options": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "type": "text",
-          "text": "Have you used derma or clinical skincare brands before?"
-        },
-        {
-          "type": "checkbox",
-          "text": "What textures do you prefer for sensitive skin?",
-          "options": [
-            "Gel",
-            "Cream",
-            "Balm",
-            "Mist"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "Are you more interested in repair-focused or hydration-focused routines?",
-          "options": [
-            "Repair",
-            "Hydration"
-          ]
-        }
-      ]
-    },
-    "brand5": {
-      "b2b": [
-        {
           "type": "multiple",
           "text": "What best describes your role?",
           "options": [
@@ -400,6 +352,54 @@
           "options": [
             "Yes",
             "No"
+          ]
+        }
+      ]
+    },
+      "brand5": {
+      "b2b": [
+        {
+          "type": "text",
+          "text": "Are you currently working with sensitive-skin-focused or skin barrier repair products?"
+        },
+        {
+          "type": "text",
+          "text": "Do you carry products suitable for post-treatment care or dermatology clinics?"
+        },
+        {
+          "type": "text",
+          "text": "How important is low-irritation, high-function skincare for your customer base?"
+        }
+      ],
+      "d2c": [
+        {
+          "type": "multiple",
+          "text": "Do you have sensitive or reactive skin?",
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Have you used derma or clinical skincare brands before?"
+        },
+        {
+          "type": "checkbox",
+          "text": "What textures do you prefer for sensitive skin?",
+          "options": [
+            "Gel",
+            "Cream",
+            "Balm",
+            "Mist"
+          ]
+        },
+        {
+          "type": "multiple",
+          "text": "Are you more interested in repair-focused or hydration-focused routines?",
+          "options": [
+            "Repair",
+            "Hydration"
           ]
         }
       ]
