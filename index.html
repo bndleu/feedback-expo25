@@ -124,7 +124,7 @@
     <p class="text-sm text-gray-500 italic">
       (Your responses will help shape future AI design tools.)
     </p>
-    <button @click="selectedRole='b2b'; step=7"
+    <button @click="selectedRole='b2b'; step=8"
             class="w-full py-3 bg-blue-500 text-white rounded">Continue</button>
   </div>
 </template>
@@ -141,7 +141,7 @@
           <span x-text="role.label"></span>
         </label>
       </template>
-      <button @click="step=5"
+      <button @click="step=8"
               :disabled="!selectedRole"
               class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
     </div>
@@ -149,7 +149,7 @@
   </template>
 
   <!-- STEP 8: QUESTIONS -->
-  <template x-if="step===7">
+  <template x-if="step===8">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6">
        <h2 class="text-xl font-semibold text-center"
         x-text="`${currentQuestionIndex+1} of ${totalQuestions}: ${currentQuestion.text}`">
@@ -503,9 +503,9 @@
       // Shortcut role step for MiriCanvas
       if (this.selectedBrand === 'brand6') {
         this.selectedRole = 'b2b'; // force B2B
-        this.step = 5;             // show content creator screen
+        this.step = 6;             // show content creator screen
       } else {
-        this.step = 5;             // normal role screen
+        this.step = 7;             // normal role screen
       }
 
     },
@@ -525,7 +525,7 @@
       };
       this.answers = Array(this.totalQuestions).fill(null);
       this.currentQuestionIndex = 0;
-      this.step = 7;
+      this.step = 8;
     },
 
     // Load questions from external JSON file
@@ -621,7 +621,7 @@
       },
 
       resetSurvey() {
-        this.step = 5;
+        this.step = 2;
         this.selectedBrand = '';
         this.selectedRole = '';
         this.selectedLanguage = '';
