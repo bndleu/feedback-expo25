@@ -159,14 +159,15 @@
   </template>
 
   <!-- STEP 8: QUESTIONS -->
-  <template x-if="step===8">
+ <template x-if="step===8">
   <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
     <div class="flex justify-between items-center">
-      <img :src="brands.find(b => b.id === selectedBrand)?.logoUrl" class="h-8 object-contain" alt="Brand Logo"/>
+      <img :src="brands.find(b => b.id === selectedBrand)?.logoUrl"
+           class="h-16 object-contain max-h-20 mx-auto"
+           alt="Brand Logo"/>
     </div>
     <h2 class="text-xl font-semibold text-center"
         x-text="`${currentQuestionIndex+1} of ${totalQuestions}: ${currentQuestion.text}`"></h2>
-
 
       <!-- Rating -->
       <div x-show="currentQuestion.type==='rating'" class="flex justify-center space-x-2">
@@ -228,7 +229,7 @@
     </div>
     <div class="flex space-x-2">
       <button @click="prevQuestion()"
-              :disabled="currentQuestionIndex === 0"
+              :disabled="false"
               class="w-full py-3 bg-blue-500 text-white rounded">
               Back
       </button>
