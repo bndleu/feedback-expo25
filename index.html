@@ -160,12 +160,6 @@
 
   <!-- STEP 8: QUESTIONS -->
   <template x-if="step===8">
-    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-6">
-       <h2 class="text-xl font-semibold text-center"
-        x-text="`${currentQuestionIndex+1} of ${totalQuestions}: ${currentQuestion.text}`">
-     </h2>
-
-     <template x-if="step===8">
   <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
     <div class="flex justify-between items-center">
       <img :src="brands.find(b => b.id === selectedBrand)?.logoUrl" class="h-8 object-contain" alt="Brand Logo"/>
