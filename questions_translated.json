@@ -1,0 +1,1447 @@
+{
+  "generic": {
+    "b2b": [
+      {
+        "type": "multiple",
+        "text": "Are you currently buying Korean Skincare?",
+        "options": [
+          {
+            "label": "Yes",
+            "label_hi": "[हिंदी] Yes",
+            "label_mr": "[मराठी] Yes",
+            "value": "Yes"
+          },
+          {
+            "label": "No",
+            "label_hi": "[हिंदी] No",
+            "label_mr": "[मराठी] No",
+            "value": "No"
+          }
+        ],
+        "text_hi": "[हिंदी] Are you currently buying Korean Skincare?",
+        "text_mr": "[मराठी] Are you currently buying Korean Skincare?"
+      },
+      {
+        "type": "multiple",
+        "text": "Preferred contact method for follow-up",
+        "options": [
+          {
+            "label": "WhatsApp",
+            "label_hi": "[हिंदी] WhatsApp",
+            "label_mr": "[मराठी] WhatsApp",
+            "value": "WhatsApp"
+          },
+          {
+            "label": "Email",
+            "label_hi": "[हिंदी] Email",
+            "label_mr": "[मराठी] Email",
+            "value": "Email"
+          },
+          {
+            "label": "Phone",
+            "label_hi": "[हिंदी] Phone",
+            "label_mr": "[मराठी] Phone",
+            "value": "Phone"
+          },
+          {
+            "label": "No contact needed",
+            "label_hi": "[हिंदी] No contact needed",
+            "label_mr": "[मराठी] No contact needed",
+            "value": "No contact needed"
+          }
+        ],
+        "text_hi": "[हिंदी] Preferred contact method for follow-up",
+        "text_mr": "[मराठी] Preferred contact method for follow-up"
+      }
+    ],
+    "d2c": [
+      {
+        "type": "multiple",
+        "text": "What is your skin type?",
+        "options": [
+          {
+            "label": "Dry",
+            "label_hi": "[हिंदी] Dry",
+            "label_mr": "[मराठी] Dry",
+            "value": "Dry"
+          },
+          {
+            "label": "Oily",
+            "label_hi": "[हिंदी] Oily",
+            "label_mr": "[मराठी] Oily",
+            "value": "Oily"
+          },
+          {
+            "label": "Combination",
+            "label_hi": "[हिंदी] Combination",
+            "label_mr": "[मराठी] Combination",
+            "value": "Combination"
+          },
+          {
+            "label": "Sensitive",
+            "label_hi": "[हिंदी] Sensitive",
+            "label_mr": "[मराठी] Sensitive",
+            "value": "Sensitive"
+          }
+        ],
+        "text_hi": "[हिंदी] What is your skin type?",
+        "text_mr": "[मराठी] What is your skin type?"
+      },
+      {
+        "type": "multiple",
+        "text": "What is your primary skin concern?",
+        "options": [
+          {
+            "label": "Brightening",
+            "label_hi": "[हिंदी] Brightening",
+            "label_mr": "[मराठी] Brightening",
+            "value": "Brightening"
+          },
+          {
+            "label": "Anti-aging",
+            "label_hi": "[हिंदी] Anti-aging",
+            "label_mr": "[मराठी] Anti-aging",
+            "value": "Anti-aging"
+          },
+          {
+            "label": "Hydration",
+            "label_hi": "[हिंदी] Hydration",
+            "label_mr": "[मराठी] Hydration",
+            "value": "Hydration"
+          },
+          {
+            "label": "Acne/trouble care",
+            "label_hi": "[हिंदी] Acne/trouble care",
+            "label_mr": "[मराठी] Acne/trouble care",
+            "value": "Acne/trouble care"
+          },
+          {
+            "label": "Firmness",
+            "label_hi": "[हिंदी] Firmness",
+            "label_mr": "[मराठी] Firmness",
+            "value": "Firmness"
+          },
+          {
+            "label": "Others",
+            "label_hi": "[हिंदी] Others",
+            "label_mr": "[मराठी] Others",
+            "value": "Others"
+          }
+        ],
+        "text_hi": "[हिंदी] What is your primary skin concern?",
+        "text_mr": "[मराठी] What is your primary skin concern?"
+      }
+    ]
+  },
+  "brands": {
+    "brand1": {
+      "b2b": [
+        {
+          "type": "multiple",
+          "text": "How much interest do your customers show in vegan or clean beauty products?",
+          "options": [
+            {
+              "label": "Very high",
+              "label_hi": "[हिंदी] Very high",
+              "label_mr": "[मराठी] Very high",
+              "value": "Very high"
+            },
+            {
+              "label": "Moderate",
+              "label_hi": "[हिंदी] Moderate",
+              "label_mr": "[मराठी] Moderate",
+              "value": "Moderate"
+            },
+            {
+              "label": "Low",
+              "label_hi": "[हिंदी] Low",
+              "label_mr": "[मराठी] Low",
+              "value": "Low"
+            }
+          ],
+          "text_hi": "[हिंदी] How much interest do your customers show in vegan or clean beauty products?",
+          "text_mr": "[मराठी] How much interest do your customers show in vegan or clean beauty products?"
+        },
+        {
+          "type": "text",
+          "text": "Do you curate your product lineup based on ingredient safety?",
+          "text_hi": "[हिंदी] Do you curate your product lineup based on ingredient safety?",
+          "text_mr": "[मराठी] Do you curate your product lineup based on ingredient safety?"
+        },
+        {
+          "type": "text",
+          "text": "How important are certifications such as Vegan / EWG / Cruelty-Free when selecting new brands?",
+          "text_hi": "[हिंदी] How important are certifications such as Vegan / EWG / Cruelty-Free when selecting new brands?",
+          "text_mr": "[मराठी] How important are certifications such as Vegan / EWG / Cruelty-Free when selecting new brands?"
+        },
+        {
+          "type": "multiple",
+          "text": "Would you be interested in adding a vegan Korean beauty brand to your portfolio?",
+          "options": [
+            {
+              "label": "Yes",
+              "label_hi": "[हिंदी] Yes",
+              "label_mr": "[मराठी] Yes",
+              "value": "Yes"
+            },
+            {
+              "label": "Maybe",
+              "label_hi": "[हिंदी] Maybe",
+              "label_mr": "[मराठी] Maybe",
+              "value": "Maybe"
+            },
+            {
+              "label": "No",
+              "label_hi": "[हिंदी] No",
+              "label_mr": "[मराठी] No",
+              "value": "No"
+            }
+          ],
+          "text_hi": "[हिंदी] Would you be interested in adding a vegan Korean beauty brand to your portfolio?",
+          "text_mr": "[मराठी] Would you be interested in adding a vegan Korean beauty brand to your portfolio?"
+        }
+      ],
+      "d2c": [
+        {
+          "type": "multiple",
+          "text": "Have you ever purchased skincare products labeled as vegan or cruelty-free?",
+          "options": [
+            {
+              "label": "Frequently",
+              "label_hi": "[हिंदी] Frequently",
+              "label_mr": "[मराठी] Frequently",
+              "value": "Frequently"
+            },
+            {
+              "label": "Occasionally",
+              "label_hi": "[हिंदी] Occasionally",
+              "label_mr": "[मराठी] Occasionally",
+              "value": "Occasionally"
+            },
+            {
+              "label": "Never",
+              "label_hi": "[हिंदी] Never",
+              "label_mr": "[मराठी] Never",
+              "value": "Never"
+            }
+          ],
+          "text_hi": "[हिंदी] Have you ever purchased skincare products labeled as vegan or cruelty-free?",
+          "text_mr": "[मराठी] Have you ever purchased skincare products labeled as vegan or cruelty-free?"
+        },
+        {
+          "type": "multiple",
+          "text": "What is the most important factor when purchasing skincare?",
+          "options": [
+            {
+              "label": "Ingredients",
+              "label_hi": "[हिंदी] Ingredients",
+              "label_mr": "[मराठी] Ingredients",
+              "value": "Ingredients"
+            },
+            {
+              "label": "Brand reputation",
+              "label_hi": "[हिंदी] Brand reputation",
+              "label_mr": "[मराठी] Brand reputation",
+              "value": "Brand reputation"
+            },
+            {
+              "label": "Price",
+              "label_hi": "[हिंदी] Price",
+              "label_mr": "[मराठी] Price",
+              "value": "Price"
+            },
+            {
+              "label": "Reviews",
+              "label_hi": "[हिंदी] Reviews",
+              "label_mr": "[मराठी] Reviews",
+              "value": "Reviews"
+            },
+            {
+              "label": "Packaging",
+              "label_hi": "[हिंदी] Packaging",
+              "label_mr": "[मराठी] Packaging",
+              "value": "Packaging"
+            }
+          ],
+          "text_hi": "[हिंदी] What is the most important factor when purchasing skincare?",
+          "text_mr": "[मराठी] What is the most important factor when purchasing skincare?"
+        },
+        {
+          "type": "multiple",
+          "text": "What is your skin type?",
+          "options": [
+            {
+              "label": "Dry",
+              "label_hi": "[हिंदी] Dry",
+              "label_mr": "[मराठी] Dry",
+              "value": "Dry"
+            },
+            {
+              "label": "Oily",
+              "label_hi": "[हिंदी] Oily",
+              "label_mr": "[मराठी] Oily",
+              "value": "Oily"
+            },
+            {
+              "label": "Combination",
+              "label_hi": "[हिंदी] Combination",
+              "label_mr": "[मराठी] Combination",
+              "value": "Combination"
+            },
+            {
+              "label": "Sensitive",
+              "label_hi": "[हिंदी] Sensitive",
+              "label_mr": "[मराठी] Sensitive",
+              "value": "Sensitive"
+            }
+          ],
+          "text_hi": "[हिंदी] What is your skin type?",
+          "text_mr": "[मराठी] What is your skin type?"
+        },
+        {
+          "type": "checkbox",
+          "text": "What product textures do you prefer?",
+          "options": [
+            {
+              "label": "Fresh",
+              "label_hi": "[हिंदी] Fresh",
+              "label_mr": "[मराठी] Fresh",
+              "value": "Fresh"
+            },
+            {
+              "label": "Soft",
+              "label_hi": "[हिंदी] Soft",
+              "label_mr": "[मराठी] Soft",
+              "value": "Soft"
+            },
+            {
+              "label": "Silky",
+              "label_hi": "[हिंदी] Silky",
+              "label_mr": "[मराठी] Silky",
+              "value": "Silky"
+            },
+            {
+              "label": "Oily / Rich",
+              "label_hi": "[हिंदी] Oily / Rich",
+              "label_mr": "[मराठी] Oily / Rich",
+              "value": "Oily / Rich"
+            },
+            {
+              "label": "Matte / Powdery",
+              "label_hi": "[हिंदी] Matte / Powdery",
+              "label_mr": "[मराठी] Matte / Powdery",
+              "value": "Matte / Powdery"
+            },
+            {
+              "label": "Gel-type",
+              "label_hi": "[हिंदी] Gel-type",
+              "label_mr": "[मराठी] Gel-type",
+              "value": "Gel-type"
+            },
+            {
+              "label": "Lotion-like",
+              "label_hi": "[हिंदी] Lotion-like",
+              "label_mr": "[मराठी] Lotion-like",
+              "value": "Lotion-like"
+            },
+            {
+              "label": "Aqua / Watery",
+              "label_hi": "[हिंदी] Aqua / Watery",
+              "label_mr": "[मराठी] Aqua / Watery",
+              "value": "Aqua / Watery"
+            }
+          ],
+          "text_hi": "[हिंदी] What product textures do you prefer?",
+          "text_mr": "[मराठी] What product textures do you prefer?"
+        }
+      ]
+    },
+    "brand2": {
+      "b2b": [
+        {
+          "type": "checkbox",
+          "text": "What are your customers’ primary skin concerns?",
+          "options": [
+            {
+              "label": "Brightening",
+              "label_hi": "[हिंदी] Brightening",
+              "label_mr": "[मराठी] Brightening",
+              "value": "Brightening"
+            },
+            {
+              "label": "Anti-aging",
+              "label_hi": "[हिंदी] Anti-aging",
+              "label_mr": "[मराठी] Anti-aging",
+              "value": "Anti-aging"
+            },
+            {
+              "label": "Hydration",
+              "label_hi": "[हिंदी] Hydration",
+              "label_mr": "[मराठी] Hydration",
+              "value": "Hydration"
+            },
+            {
+              "label": "Acne/trouble care",
+              "label_hi": "[हिंदी] Acne/trouble care",
+              "label_mr": "[मराठी] Acne/trouble care",
+              "value": "Acne/trouble care"
+            },
+            {
+              "label": "Firmness",
+              "label_hi": "[हिंदी] Firmness",
+              "label_mr": "[मराठी] Firmness",
+              "value": "Firmness"
+            },
+            {
+              "label": "Others",
+              "label_hi": "[हिंदी] Others",
+              "label_mr": "[मराठी] Others",
+              "value": "Others"
+            }
+          ],
+          "text_hi": "[हिंदी] What are your customers’ primary skin concerns?",
+          "text_mr": "[मराठी] What are your customers’ primary skin concerns?"
+        },
+        {
+          "type": "text",
+          "text": "How important is visible skin improvement for your clients when evaluating products?",
+          "text_hi": "[हिंदी] How important is visible skin improvement for your clients when evaluating products?",
+          "text_mr": "[मराठी] How important is visible skin improvement for your clients when evaluating products?"
+        },
+        {
+          "type": "text",
+          "text": "How important is packaging and visual design in selecting products that will sell well to consumers?",
+          "text_hi": "[हिंदी] How important is packaging and visual design in selecting products that will sell well to consumers?",
+          "text_mr": "[मराठी] How important is packaging and visual design in selecting products that will sell well to consumers?"
+        }
+      ],
+      "d2c": [
+        {
+          "type": "multiple",
+          "text": "What’s your biggest skincare concern?",
+          "options": [
+            {
+              "label": "Acne",
+              "label_hi": "[हिंदी] Acne",
+              "label_mr": "[मराठी] Acne",
+              "value": "Acne"
+            },
+            {
+              "label": "Pigmentation",
+              "label_hi": "[हिंदी] Pigmentation",
+              "label_mr": "[मराठी] Pigmentation",
+              "value": "Pigmentation"
+            },
+            {
+              "label": "Redness",
+              "label_hi": "[हिंदी] Redness",
+              "label_mr": "[मराठी] Redness",
+              "value": "Redness"
+            },
+            {
+              "label": "Aging Firmness",
+              "label_hi": "[हिंदी] Aging Firmness",
+              "label_mr": "[मराठी] Aging Firmness",
+              "value": "Aging Firmness"
+            },
+            {
+              "label": "Others",
+              "label_hi": "[हिंदी] Others",
+              "label_mr": "[मराठी] Others",
+              "value": "Others"
+            }
+          ],
+          "text_hi": "[हिंदी] What’s your biggest skincare concern?",
+          "text_mr": "[मराठी] What’s your biggest skincare concern?"
+        },
+        {
+          "type": "multiple",
+          "text": "Where do you usually prefer to purchase skincare products?",
+          "options": [
+            {
+              "label": "Offline stores",
+              "label_hi": "[हिंदी] Offline stores",
+              "label_mr": "[मराठी] Offline stores",
+              "value": "Offline stores"
+            },
+            {
+              "label": "Online marketplaces",
+              "label_hi": "[हिंदी] Online marketplaces",
+              "label_mr": "[मराठी] Online marketplaces",
+              "value": "Online marketplaces"
+            },
+            {
+              "label": "Social media shops",
+              "label_hi": "[हिंदी] Social media shops",
+              "label_mr": "[मराठी] Social media shops",
+              "value": "Social media shops"
+            },
+            {
+              "label": "Others",
+              "label_hi": "[हिंदी] Others",
+              "label_mr": "[मराठी] Others",
+              "value": "Others"
+            }
+          ],
+          "text_hi": "[हिंदी] Where do you usually prefer to purchase skincare products?",
+          "text_mr": "[मराठी] Where do you usually prefer to purchase skincare products?"
+        },
+        {
+          "type": "multiple",
+          "text": "What do you value the most when purchasing a product?",
+          "options": [
+            {
+              "label": "Price",
+              "label_hi": "[हिंदी] Price",
+              "label_mr": "[मराठी] Price",
+              "value": "Price"
+            },
+            {
+              "label": "Ingredients",
+              "label_hi": "[हिंदी] Ingredients",
+              "label_mr": "[मराठी] Ingredients",
+              "value": "Ingredients"
+            },
+            {
+              "label": "Design",
+              "label_hi": "[हिंदी] Design",
+              "label_mr": "[मराठी] Design",
+              "value": "Design"
+            },
+            {
+              "label": "Brand recognition",
+              "label_hi": "[हिंदी] Brand recognition",
+              "label_mr": "[मराठी] Brand recognition",
+              "value": "Brand recognition"
+            },
+            {
+              "label": "Reviews",
+              "label_hi": "[हिंदी] Reviews",
+              "label_mr": "[मराठी] Reviews",
+              "value": "Reviews"
+            }
+          ],
+          "text_hi": "[हिंदी] What do you value the most when purchasing a product?",
+          "text_mr": "[मराठी] What do you value the most when purchasing a product?"
+        },
+        {
+          "type": "checkbox",
+          "text": "What texture do you prefer in skincare?",
+          "options": [
+            {
+              "label": "Lotion",
+              "label_hi": "[हिंदी] Lotion",
+              "label_mr": "[मराठी] Lotion",
+              "value": "Lotion"
+            },
+            {
+              "label": "Cream",
+              "label_hi": "[हिंदी] Cream",
+              "label_mr": "[मराठी] Cream",
+              "value": "Cream"
+            },
+            {
+              "label": "Gel",
+              "label_hi": "[हिंदी] Gel",
+              "label_mr": "[मराठी] Gel",
+              "value": "Gel"
+            },
+            {
+              "label": "Ampoule",
+              "label_hi": "[हिंदी] Ampoule",
+              "label_mr": "[मराठी] Ampoule",
+              "value": "Ampoule"
+            },
+            {
+              "label": "Essence",
+              "label_hi": "[हिंदी] Essence",
+              "label_mr": "[मराठी] Essence",
+              "value": "Essence"
+            },
+            {
+              "label": "Toner",
+              "label_hi": "[हिंदी] Toner",
+              "label_mr": "[मराठी] Toner",
+              "value": "Toner"
+            },
+            {
+              "label": "Sheet Mask",
+              "label_hi": "[हिंदी] Sheet Mask",
+              "label_mr": "[मराठी] Sheet Mask",
+              "value": "Sheet Mask"
+            },
+            {
+              "label": "Other",
+              "label_hi": "[हिंदी] Other",
+              "label_mr": "[मराठी] Other",
+              "value": "Other"
+            }
+          ],
+          "text_hi": "[हिंदी] What texture do you prefer in skincare?",
+          "text_mr": "[मराठी] What texture do you prefer in skincare?"
+        },
+        {
+          "type": "text",
+          "text": "If you’ve used this product, what did you like most about it?",
+          "text_hi": "[हिंदी] If you’ve used this product, what did you like most about it?",
+          "text_mr": "[मराठी] If you’ve used this product, what did you like most about it?"
+        }
+      ]
+    },
+    "brand3": {
+      "b2b": [
+        {
+          "type": "checkbox",
+          "text": "Which type of clients would you target with this brand?",
+          "options": [
+            {
+              "label": "Clinics",
+              "label_hi": "[हिंदी] Clinics",
+              "label_mr": "[मराठी] Clinics",
+              "value": "Clinics"
+            },
+            {
+              "label": "Retail customers",
+              "label_hi": "[हिंदी] Retail customers",
+              "label_mr": "[मराठी] Retail customers",
+              "value": "Retail customers"
+            },
+            {
+              "label": "Online buyers",
+              "label_hi": "[हिंदी] Online buyers",
+              "label_mr": "[मराठी] Online buyers",
+              "value": "Online buyers"
+            }
+          ],
+          "text_hi": "[हिंदी] Which type of clients would you target with this brand?",
+          "text_mr": "[मराठी] Which type of clients would you target with this brand?"
+        },
+        {
+          "type": "text",
+          "text": "Do you already carry peptide-based or collagen skincare products?",
+          "text_hi": "[हिंदी] Do you already carry peptide-based or collagen skincare products?",
+          "text_mr": "[मराठी] Do you already carry peptide-based or collagen skincare products?"
+        },
+        {
+          "type": "multiple",
+          "text": "What is the acceptable import price range for new K-beauty premium products in your market?",
+          "options": [
+            {
+              "label": "Under ₹1,000",
+              "label_hi": "[हिंदी] Under ₹1,000",
+              "label_mr": "[मराठी] Under ₹1,000",
+              "value": "Under ₹1,000"
+            },
+            {
+              "label": "₹1,000–2,000",
+              "label_hi": "[हिंदी] ₹1,000–2,000",
+              "label_mr": "[मराठी] ₹1,000–2,000",
+              "value": "₹1,000–2,000"
+            },
+            {
+              "label": "₹2,000–3,000",
+              "label_hi": "[हिंदी] ₹2,000–3,000",
+              "label_mr": "[मराठी] ₹2,000–3,000",
+              "value": "₹2,000–3,000"
+            },
+            {
+              "label": "Over ₹3,000",
+              "label_hi": "[हिंदी] Over ₹3,000",
+              "label_mr": "[मराठी] Over ₹3,000",
+              "value": "Over ₹3,000"
+            }
+          ],
+          "text_hi": "[हिंदी] What is the acceptable import price range for new K-beauty premium products in your market?",
+          "text_mr": "[मराठी] What is the acceptable import price range for new K-beauty premium products in your market?"
+        }
+      ],
+      "d2c": [
+        {
+          "type": "text",
+          "text": "Are you currently using any products that address signs of aging?",
+          "text_hi": "[हिंदी] Are you currently using any products that address signs of aging?",
+          "text_mr": "[मराठी] Are you currently using any products that address signs of aging?"
+        },
+        {
+          "type": "multiple",
+          "text": "Which anti-aging ingredient do you trust most?",
+          "options": [
+            {
+              "label": "Retinol",
+              "label_hi": "[हिंदी] Retinol",
+              "label_mr": "[मराठी] Retinol",
+              "value": "Retinol"
+            },
+            {
+              "label": "Peptides",
+              "label_hi": "[हिंदी] Peptides",
+              "label_mr": "[मराठी] Peptides",
+              "value": "Peptides"
+            },
+            {
+              "label": "Vitamin C",
+              "label_hi": "[हिंदी] Vitamin C",
+              "label_mr": "[मराठी] Vitamin C",
+              "value": "Vitamin C"
+            },
+            {
+              "label": "Collagen",
+              "label_hi": "[हिंदी] Collagen",
+              "label_mr": "[मराठी] Collagen",
+              "value": "Collagen"
+            }
+          ],
+          "text_hi": "[हिंदी] Which anti-aging ingredient do you trust most?",
+          "text_mr": "[मराठी] Which anti-aging ingredient do you trust most?"
+        },
+        {
+          "type": "multiple",
+          "text": "How much are you willing to pay for a premium K-beauty product you’ve never tried before?",
+          "options": [
+            {
+              "label": "Under ₹500",
+              "label_hi": "[हिंदी] Under ₹500",
+              "label_mr": "[मराठी] Under ₹500",
+              "value": "Under ₹500"
+            },
+            {
+              "label": "₹500–1,000",
+              "label_hi": "[हिंदी] ₹500–1,000",
+              "label_mr": "[मराठी] ₹500–1,000",
+              "value": "₹500–1,000"
+            },
+            {
+              "label": "₹1,000–2,000",
+              "label_hi": "[हिंदी] ₹1,000–2,000",
+              "label_mr": "[मराठी] ₹1,000–2,000",
+              "value": "₹1,000–2,000"
+            },
+            {
+              "label": "Over ₹2,000",
+              "label_hi": "[हिंदी] Over ₹2,000",
+              "label_mr": "[मराठी] Over ₹2,000",
+              "value": "Over ₹2,000"
+            }
+          ],
+          "text_hi": "[हिंदी] How much are you willing to pay for a premium K-beauty product you’ve never tried before?",
+          "text_mr": "[मराठी] How much are you willing to pay for a premium K-beauty product you’ve never tried before?"
+        },
+        {
+          "type": "multiple",
+          "text": "What matters most to you in choosing a luxury skincare brand?",
+          "options": [
+            {
+              "label": "Ingredients",
+              "label_hi": "[हिंदी] Ingredients",
+              "label_mr": "[मराठी] Ingredients",
+              "value": "Ingredients"
+            },
+            {
+              "label": "Packaging",
+              "label_hi": "[हिंदी] Packaging",
+              "label_mr": "[मराठी] Packaging",
+              "value": "Packaging"
+            },
+            {
+              "label": "Brand story",
+              "label_hi": "[हिंदी] Brand story",
+              "label_mr": "[मराठी] Brand story",
+              "value": "Brand story"
+            },
+            {
+              "label": "Price",
+              "label_hi": "[हिंदी] Price",
+              "label_mr": "[मराठी] Price",
+              "value": "Price"
+            },
+            {
+              "label": "Texture",
+              "label_hi": "[हिंदी] Texture",
+              "label_mr": "[मराठी] Texture",
+              "value": "Texture"
+            }
+          ],
+          "text_hi": "[हिंदी] What matters most to you in choosing a luxury skincare brand?",
+          "text_mr": "[मराठी] What matters most to you in choosing a luxury skincare brand?"
+        }
+      ]
+    },
+    "brand4": {
+      "b2b": [
+        {
+          "type": "multiple",
+          "text": "What best describes your role?",
+          "options": [
+            {
+              "label": "Retailer / Store Owner",
+              "label_hi": "[हिंदी] Retailer / Store Owner",
+              "label_mr": "[मराठी] Retailer / Store Owner",
+              "value": "Retailer / Store Owner"
+            },
+            {
+              "label": "Distributor",
+              "label_hi": "[हिंदी] Distributor",
+              "label_mr": "[मराठी] Distributor",
+              "value": "Distributor"
+            },
+            {
+              "label": "Importer / Exporter",
+              "label_hi": "[हिंदी] Importer / Exporter",
+              "label_mr": "[मराठी] Importer / Exporter",
+              "value": "Importer / Exporter"
+            },
+            {
+              "label": "Salon / Spa Owner",
+              "label_hi": "[हिंदी] Salon / Spa Owner",
+              "label_mr": "[मराठी] Salon / Spa Owner",
+              "value": "Salon / Spa Owner"
+            },
+            {
+              "label": "Other",
+              "label_hi": "[हिंदी] Other",
+              "label_mr": "[मराठी] Other",
+              "value": "Other"
+            }
+          ],
+          "text_hi": "[हिंदी] What best describes your role?",
+          "text_mr": "[मराठी] What best describes your role?"
+        },
+        {
+          "type": "multiple",
+          "text": "Are you actively exploring new products in beauty or wellness?",
+          "options": [
+            {
+              "label": "Yes",
+              "label_hi": "[हिंदी] Yes",
+              "label_mr": "[मराठी] Yes",
+              "value": "Yes"
+            },
+            {
+              "label": "Not right now",
+              "label_hi": "[हिंदी] Not right now",
+              "label_mr": "[मराठी] Not right now",
+              "value": "Not right now"
+            },
+            {
+              "label": "Depends on pricing and uniqueness",
+              "label_hi": "[हिंदी] Depends on pricing and uniqueness",
+              "label_mr": "[मराठी] Depends on pricing and uniqueness",
+              "value": "Depends on pricing and uniqueness"
+            }
+          ],
+          "text_hi": "[हिंदी] Are you actively exploring new products in beauty or wellness?",
+          "text_mr": "[मराठी] Are you actively exploring new products in beauty or wellness?"
+        },
+        {
+          "type": "multiple",
+          "text": "Would you be interested in stocking or distributing DailyChae products?",
+          "options": [
+            {
+              "label": "Yes",
+              "label_hi": "[हिंदी] Yes",
+              "label_mr": "[मराठी] Yes",
+              "value": "Yes"
+            },
+            {
+              "label": "Maybe, send me more info",
+              "label_hi": "[हिंदी] Maybe, send me more info",
+              "label_mr": "[मराठी] Maybe, send me more info",
+              "value": "Maybe, send me more info"
+            },
+            {
+              "label": "Not at the moment",
+              "label_hi": "[हिंदी] Not at the moment",
+              "label_mr": "[मराठी] Not at the moment",
+              "value": "Not at the moment"
+            }
+          ],
+          "text_hi": "[हिंदी] Would you be interested in stocking or distributing DailyChae products?",
+          "text_mr": "[मराठी] Would you be interested in stocking or distributing DailyChae products?"
+        },
+        {
+          "type": "multiple",
+          "text": "Estimated monthly volume you could potentially handle?",
+          "options": [
+            {
+              "label": "Less than 50 units",
+              "label_hi": "[हिंदी] Less than 50 units",
+              "label_mr": "[मराठी] Less than 50 units",
+              "value": "Less than 50 units"
+            },
+            {
+              "label": "50–200 units",
+              "label_hi": "[हिंदी] 50–200 units",
+              "label_mr": "[मराठी] 50–200 units",
+              "value": "50–200 units"
+            },
+            {
+              "label": "200–500 units",
+              "label_hi": "[हिंदी] 200–500 units",
+              "label_mr": "[मराठी] 200–500 units",
+              "value": "200–500 units"
+            },
+            {
+              "label": "500+ units",
+              "label_hi": "[हिंदी] 500+ units",
+              "label_mr": "[मराठी] 500+ units",
+              "value": "500+ units"
+            }
+          ],
+          "text_hi": "[हिंदी] Estimated monthly volume you could potentially handle?",
+          "text_mr": "[मराठी] Estimated monthly volume you could potentially handle?"
+        }
+      ],
+      "d2c": [
+        {
+          "type": "multiple",
+          "text": "Have you heard of vitamin shower filters before?",
+          "options": [
+            {
+              "label": "Yes, I’ve used them",
+              "label_hi": "[हिंदी] Yes, I’ve used them",
+              "label_mr": "[मराठी] Yes, I’ve used them",
+              "value": "Yes, I’ve used them"
+            },
+            {
+              "label": "I’ve heard of them but never tried",
+              "label_hi": "[हिंदी] I’ve heard of them but never tried",
+              "label_mr": "[मराठी] I’ve heard of them but never tried",
+              "value": "I’ve heard of them but never tried"
+            },
+            {
+              "label": "No, this is my first time",
+              "label_hi": "[हिंदी] No, this is my first time",
+              "label_mr": "[मराठी] No, this is my first time",
+              "value": "No, this is my first time"
+            }
+          ],
+          "text_hi": "[हिंदी] Have you heard of vitamin shower filters before?",
+          "text_mr": "[मराठी] Have you heard of vitamin shower filters before?"
+        },
+        {
+          "type": "checkbox",
+          "text": "What are you most concerned about in your current shower water?",
+          "options": [
+            {
+              "label": "Hard water / skin dryness",
+              "label_hi": "[हिंदी] Hard water / skin dryness",
+              "label_mr": "[मराठी] Hard water / skin dryness",
+              "value": "Hard water / skin dryness"
+            },
+            {
+              "label": "Hair fall / dullness",
+              "label_hi": "[हिंदी] Hair fall / dullness",
+              "label_mr": "[मराठी] Hair fall / dullness",
+              "value": "Hair fall / dullness"
+            },
+            {
+              "label": "Chlorine or odor",
+              "label_hi": "[हिंदी] Chlorine or odor",
+              "label_mr": "[मराठी] Chlorine or odor",
+              "value": "Chlorine or odor"
+            },
+            {
+              "label": "Low water pressure",
+              "label_hi": "[हिंदी] Low water pressure",
+              "label_mr": "[मराठी] Low water pressure",
+              "value": "Low water pressure"
+            },
+            {
+              "label": "I don’t think about it much",
+              "label_hi": "[हिंदी] I don’t think about it much",
+              "label_mr": "[मराठी] I don’t think about it much",
+              "value": "I don’t think about it much"
+            }
+          ],
+          "text_hi": "[हिंदी] What are you most concerned about in your current shower water?",
+          "text_mr": "[मराठी] What are you most concerned about in your current shower water?"
+        },
+        {
+          "type": "checkbox",
+          "text": "What features matter most to you in a showerhead?",
+          "options": [
+            {
+              "label": "Gentle on skin / hair",
+              "label_hi": "[हिंदी] Gentle on skin / hair",
+              "label_mr": "[मराठी] Gentle on skin / hair",
+              "value": "Gentle on skin / hair"
+            },
+            {
+              "label": "Stylish design",
+              "label_hi": "[हिंदी] Stylish design",
+              "label_mr": "[मराठी] Stylish design",
+              "value": "Stylish design"
+            },
+            {
+              "label": "Water purification",
+              "label_hi": "[हिंदी] Water purification",
+              "label_mr": "[मराठी] Water purification",
+              "value": "Water purification"
+            },
+            {
+              "label": "Water-saving",
+              "label_hi": "[हिंदी] Water-saving",
+              "label_mr": "[मराठी] Water-saving",
+              "value": "Water-saving"
+            },
+            {
+              "label": "Aromatic shower experience",
+              "label_hi": "[हिंदी] Aromatic shower experience",
+              "label_mr": "[मराठी] Aromatic shower experience",
+              "value": "Aromatic shower experience"
+            }
+          ],
+          "text_hi": "[हिंदी] What features matter most to you in a showerhead?",
+          "text_mr": "[मराठी] What features matter most to you in a showerhead?"
+        },
+        {
+          "type": "checkbox",
+          "text": "Do you enjoy aromatic water experiences during a shower?",
+          "options": [
+            {
+              "label": "Lavender",
+              "label_hi": "[हिंदी] Lavender",
+              "label_mr": "[मराठी] Lavender",
+              "value": "Lavender"
+            },
+            {
+              "label": "Citrus",
+              "label_hi": "[हिंदी] Citrus",
+              "label_mr": "[मराठी] Citrus",
+              "value": "Citrus"
+            },
+            {
+              "label": "Musk",
+              "label_hi": "[हिंदी] Musk",
+              "label_mr": "[मराठी] Musk",
+              "value": "Musk"
+            },
+            {
+              "label": "Unscented",
+              "label_hi": "[हिंदी] Unscented",
+              "label_mr": "[मराठी] Unscented",
+              "value": "Unscented"
+            }
+          ],
+          "text_hi": "[हिंदी] Do you enjoy aromatic water experiences during a shower?",
+          "text_mr": "[मराठी] Do you enjoy aromatic water experiences during a shower?"
+        },
+        {
+          "type": "multiple",
+          "text": "Want to receive exclusive launch offers and updates?",
+          "options": [
+            {
+              "label": "Yes",
+              "label_hi": "[हिंदी] Yes",
+              "label_mr": "[मराठी] Yes",
+              "value": "Yes"
+            },
+            {
+              "label": "No",
+              "label_hi": "[हिंदी] No",
+              "label_mr": "[मराठी] No",
+              "value": "No"
+            }
+          ],
+          "text_hi": "[हिंदी] Want to receive exclusive launch offers and updates?",
+          "text_mr": "[मराठी] Want to receive exclusive launch offers and updates?"
+        }
+      ]
+    },
+    "brand5": {
+      "b2b": [
+        {
+          "type": "text",
+          "text": "Are you currently working with sensitive-skin-focused or skin barrier repair products?",
+          "text_hi": "[हिंदी] Are you currently working with sensitive-skin-focused or skin barrier repair products?",
+          "text_mr": "[मराठी] Are you currently working with sensitive-skin-focused or skin barrier repair products?"
+        },
+        {
+          "type": "text",
+          "text": "Do you carry products suitable for post-treatment care or dermatology clinics?",
+          "text_hi": "[हिंदी] Do you carry products suitable for post-treatment care or dermatology clinics?",
+          "text_mr": "[मराठी] Do you carry products suitable for post-treatment care or dermatology clinics?"
+        },
+        {
+          "type": "text",
+          "text": "How important is low-irritation, high-function skincare for your customer base?",
+          "text_hi": "[हिंदी] How important is low-irritation, high-function skincare for your customer base?",
+          "text_mr": "[मराठी] How important is low-irritation, high-function skincare for your customer base?"
+        }
+      ],
+      "d2c": [
+        {
+          "type": "multiple",
+          "text": "Do you have sensitive or reactive skin?",
+          "options": [
+            {
+              "label": "Yes",
+              "label_hi": "[हिंदी] Yes",
+              "label_mr": "[मराठी] Yes",
+              "value": "Yes"
+            },
+            {
+              "label": "No",
+              "label_hi": "[हिंदी] No",
+              "label_mr": "[मराठी] No",
+              "value": "No"
+            }
+          ],
+          "text_hi": "[हिंदी] Do you have sensitive or reactive skin?",
+          "text_mr": "[मराठी] Do you have sensitive or reactive skin?"
+        },
+        {
+          "type": "text",
+          "text": "Have you used derma or clinical skincare brands before?",
+          "text_hi": "[हिंदी] Have you used derma or clinical skincare brands before?",
+          "text_mr": "[मराठी] Have you used derma or clinical skincare brands before?"
+        },
+        {
+          "type": "checkbox",
+          "text": "What textures do you prefer for sensitive skin?",
+          "options": [
+            {
+              "label": "Gel",
+              "label_hi": "[हिंदी] Gel",
+              "label_mr": "[मराठी] Gel",
+              "value": "Gel"
+            },
+            {
+              "label": "Cream",
+              "label_hi": "[हिंदी] Cream",
+              "label_mr": "[मराठी] Cream",
+              "value": "Cream"
+            },
+            {
+              "label": "Balm",
+              "label_hi": "[हिंदी] Balm",
+              "label_mr": "[मराठी] Balm",
+              "value": "Balm"
+            },
+            {
+              "label": "Mist",
+              "label_hi": "[हिंदी] Mist",
+              "label_mr": "[मराठी] Mist",
+              "value": "Mist"
+            }
+          ],
+          "text_hi": "[हिंदी] What textures do you prefer for sensitive skin?",
+          "text_mr": "[मराठी] What textures do you prefer for sensitive skin?"
+        },
+        {
+          "type": "multiple",
+          "text": "Are you more interested in repair-focused or hydration-focused routines?",
+          "options": [
+            {
+              "label": "Repair",
+              "label_hi": "[हिंदी] Repair",
+              "label_mr": "[मराठी] Repair",
+              "value": "Repair"
+            },
+            {
+              "label": "Hydration",
+              "label_hi": "[हिंदी] Hydration",
+              "label_mr": "[मराठी] Hydration",
+              "value": "Hydration"
+            }
+          ],
+          "text_hi": "[हिंदी] Are you more interested in repair-focused or hydration-focused routines?",
+          "text_mr": "[मराठी] Are you more interested in repair-focused or hydration-focused routines?"
+        }
+      ]
+    },
+    "brand6": {
+      "b2b": [
+        {
+          "type": "multiple",
+          "text": "What best describes your business?",
+          "options": [
+            {
+              "label": "Students or teachers",
+              "label_hi": "[हिंदी] Students or teachers",
+              "label_mr": "[मराठी] Students or teachers",
+              "value": "Students or teachers"
+            },
+            {
+              "label": "Professional Designers",
+              "label_hi": "[हिंदी] Professional Designers",
+              "label_mr": "[मराठी] Professional Designers",
+              "value": "Professional Designers"
+            },
+            {
+              "label": "Office workers (non-designers)",
+              "label_hi": "[हिंदी] Office workers (non-designers)",
+              "label_mr": "[मराठी] Office workers (non-designers)",
+              "value": "Office workers (non-designers)"
+            },
+            {
+              "label": "Small business owners",
+              "label_hi": "[हिंदी] Small business owners",
+              "label_mr": "[मराठी] Small business owners",
+              "value": "Small business owners"
+            },
+            {
+              "label": "Others (please specify)",
+              "label_hi": "[हिंदी] Others (please specify)",
+              "label_mr": "[मराठी] Others (please specify)",
+              "value": "Others (please specify)"
+            }
+          ],
+          "text_hi": "[हिंदी] What best describes your business?",
+          "text_mr": "[मराठी] What best describes your business?"
+        },
+        {
+          "type": "multiple",
+          "text": "How many employees does your company have?",
+          "options": [
+            {
+              "label": "0-10",
+              "label_hi": "[हिंदी] 0-10",
+              "label_mr": "[मराठी] 0-10",
+              "value": "0-10"
+            },
+            {
+              "label": "11-50",
+              "label_hi": "[हिंदी] 11-50",
+              "label_mr": "[मराठी] 11-50",
+              "value": "11-50"
+            },
+            {
+              "label": "51-100",
+              "label_hi": "[हिंदी] 51-100",
+              "label_mr": "[मराठी] 51-100",
+              "value": "51-100"
+            },
+            {
+              "label": "101-500",
+              "label_hi": "[हिंदी] 101-500",
+              "label_mr": "[मराठी] 101-500",
+              "value": "101-500"
+            },
+            {
+              "label": "501 or more",
+              "label_hi": "[हिंदी] 501 or more",
+              "label_mr": "[मराठी] 501 or more",
+              "value": "501 or more"
+            }
+          ],
+          "text_hi": "[हिंदी] How many employees does your company have?",
+          "text_mr": "[मराठी] How many employees does your company have?"
+        },
+        {
+          "type": "checkbox",
+          "text": "What type of content do you frequently create?",
+          "options": [
+            {
+              "label": "Presentation",
+              "label_hi": "[हिंदी] Presentation",
+              "label_mr": "[मराठी] Presentation",
+              "value": "Presentation"
+            },
+            {
+              "label": "Poster",
+              "label_hi": "[हिंदी] Poster",
+              "label_mr": "[मराठी] Poster",
+              "value": "Poster"
+            },
+            {
+              "label": "Social Media content",
+              "label_hi": "[हिंदी] Social Media content",
+              "label_mr": "[मराठी] Social Media content",
+              "value": "Social Media content"
+            },
+            {
+              "label": "Image",
+              "label_hi": "[हिंदी] Image",
+              "label_mr": "[मराठी] Image",
+              "value": "Image"
+            },
+            {
+              "label": "Flyer",
+              "label_hi": "[हिंदी] Flyer",
+              "label_mr": "[मराठी] Flyer",
+              "value": "Flyer"
+            },
+            {
+              "label": "Others (Please specify)",
+              "label_hi": "[हिंदी] Others (Please specify)",
+              "label_mr": "[मराठी] Others (Please specify)",
+              "value": "Others (Please specify)"
+            }
+          ],
+          "text_hi": "[हिंदी] What type of content do you frequently create?",
+          "text_mr": "[मराठी] What type of content do you frequently create?"
+        },
+        {
+          "type": "multiple",
+          "text": "On average, how often does your team prepare the content you selected?",
+          "options": [
+            {
+              "label": "Daily",
+              "label_hi": "[हिंदी] Daily",
+              "label_mr": "[मराठी] Daily",
+              "value": "Daily"
+            },
+            {
+              "label": "Weekly",
+              "label_hi": "[हिंदी] Weekly",
+              "label_mr": "[मराठी] Weekly",
+              "value": "Weekly"
+            },
+            {
+              "label": "Monthly",
+              "label_hi": "[हिंदी] Monthly",
+              "label_mr": "[मराठी] Monthly",
+              "value": "Monthly"
+            },
+            {
+              "label": "Occasionally",
+              "label_hi": "[हिंदी] Occasionally",
+              "label_mr": "[मराठी] Occasionally",
+              "value": "Occasionally"
+            }
+          ],
+          "text_hi": "[हिंदी] On average, how often does your team prepare the content you selected?",
+          "text_mr": "[मराठी] On average, how often does your team prepare the content you selected?"
+        },
+        {
+          "type": "multiple",
+          "text": "How do you currently design visuals for promotions or social media?",
+          "options": [
+            {
+              "label": "Internal Team",
+              "label_hi": "[हिंदी] Internal Team",
+              "label_mr": "[मराठी] Internal Team",
+              "value": "Internal Team"
+            },
+            {
+              "label": "Freelancer/Agency",
+              "label_hi": "[हिंदी] Freelancer/Agency",
+              "label_mr": "[मराठी] Freelancer/Agency",
+              "value": "Freelancer/Agency"
+            },
+            {
+              "label": "Use Canva or Adobe or similar tools",
+              "label_hi": "[हिंदी] Use Canva or Adobe or similar tools",
+              "label_mr": "[मराठी] Use Canva or Adobe or similar tools",
+              "value": "Use Canva or Adobe or similar tools"
+            },
+            {
+              "label": "We don’t do this often",
+              "label_hi": "[हिंदी] We don’t do this often",
+              "label_mr": "[मराठी] We don’t do this often",
+              "value": "We don’t do this often"
+            }
+          ],
+          "text_hi": "[हिंदी] How do you currently design visuals for promotions or social media?",
+          "text_mr": "[मराठी] How do you currently design visuals for promotions or social media?"
+        },
+        {
+          "type": "rating",
+          "text": "How beneficial would an AI-powered presentation design tool be for your business?",
+          "text_hi": "[हिंदी] How beneficial would an AI-powered presentation design tool be for your business?",
+          "text_mr": "[मराठी] How beneficial would an AI-powered presentation design tool be for your business?"
+        },
+        {
+          "type": "checkbox",
+          "text": "What would make you consider adopting a new design platform?",
+          "options": [
+            {
+              "label": "Affordable plans",
+              "label_hi": "[हिंदी] Affordable plans",
+              "label_mr": "[मराठी] Affordable plans",
+              "value": "Affordable plans"
+            },
+            {
+              "label": "Easy-to-use interface",
+              "label_hi": "[हिंदी] Easy-to-use interface",
+              "label_mr": "[मराठी] Easy-to-use interface",
+              "value": "Easy-to-use interface"
+            },
+            {
+              "label": "AI-assisted design features",
+              "label_hi": "[हिंदी] AI-assisted design features",
+              "label_mr": "[मराठी] AI-assisted design features",
+              "value": "AI-assisted design features"
+            },
+            {
+              "label": "Templates relevant to my business",
+              "label_hi": "[हिंदी] Templates relevant to my business",
+              "label_mr": "[मराठी] Templates relevant to my business",
+              "value": "Templates relevant to my business"
+            },
+            {
+              "label": "Team Collaboration Support",
+              "label_hi": "[हिंदी] Team Collaboration Support",
+              "label_mr": "[मराठी] Team Collaboration Support",
+              "value": "Team Collaboration Support"
+            }
+          ],
+          "text_hi": "[हिंदी] What would make you consider adopting a new design platform?",
+          "text_mr": "[मराठी] What would make you consider adopting a new design platform?"
+        },
+        {
+          "type": "multiple",
+          "text": "How likely are you to try a new design platform if it meets these needs?",
+          "options": [
+            {
+              "label": "Very likely",
+              "label_hi": "[हिंदी] Very likely",
+              "label_mr": "[मराठी] Very likely",
+              "value": "Very likely"
+            },
+            {
+              "label": "Somewhat likely",
+              "label_hi": "[हिंदी] Somewhat likely",
+              "label_mr": "[मराठी] Somewhat likely",
+              "value": "Somewhat likely"
+            },
+            {
+              "label": "Not Sure",
+              "label_hi": "[हिंदी] Not Sure",
+              "label_mr": "[मराठी] Not Sure",
+              "value": "Not Sure"
+            },
+            {
+              "label": "Not likely",
+              "label_hi": "[हिंदी] Not likely",
+              "label_mr": "[मराठी] Not likely",
+              "value": "Not likely"
+            }
+          ],
+          "text_hi": "[हिंदी] How likely are you to try a new design platform if it meets these needs?",
+          "text_mr": "[मराठी] How likely are you to try a new design platform if it meets these needs?"
+        },
+        {
+          "type": "multiple",
+          "text": "MiriCanvas is a new visual design tool (like Canva) with smart features like enhanced AI-generated presentations and business templates. Would you be open to early access and updates on how it could support your business as we bring it to India?",
+          "options": [
+            {
+              "label": "Yes",
+              "label_hi": "[हिंदी] Yes",
+              "label_mr": "[मराठी] Yes",
+              "value": "Yes"
+            },
+            {
+              "label": "Maybe",
+              "label_hi": "[हिंदी] Maybe",
+              "label_mr": "[मराठी] Maybe",
+              "value": "Maybe"
+            },
+            {
+              "label": "No",
+              "label_hi": "[हिंदी] No",
+              "label_mr": "[मराठी] No",
+              "value": "No"
+            }
+          ],
+          "text_hi": "[हिंदी] MiriCanvas is a new visual design tool (like Canva) with smart features like enhanced AI-generated presentations and business templates. Would you be open to early access and updates on how it could support your business as we bring it to India?",
+          "text_mr": "[मराठी] MiriCanvas is a new visual design tool (like Canva) with smart features like enhanced AI-generated presentations and business templates. Would you be open to early access and updates on how it could support your business as we bring it to India?"
+        }
+      ]
+    }
+  },
+  "_computed": {
+    "isMiriCanvas": "selectedBrand === 'brand6'"
+  }
+}

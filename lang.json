@@ -1,0 +1,41 @@
+{
+  "en": {
+    "next": "Next",
+    "back": "Back",
+    "begin": "Begin Survey",
+    "login": "Login",
+    "logout": "Logout",
+    "language": "Choose Language",
+    "brand": "Select Brand",
+    "submit": "Submit",
+    "contact_info": "Your Contact Info",
+    "continue": "Continue",
+    "start": "Start"
+  },
+  "hi": {
+    "next": "आगे",
+    "back": "वापस",
+    "begin": "सर्वे शुरू करें",
+    "login": "लॉग इन",
+    "logout": "लॉग आउट",
+    "language": "भाषा चुनें",
+    "brand": "ब्रांड चुनें",
+    "submit": "जमा करें",
+    "contact_info": "आपकी संपर्क जानकारी",
+    "continue": "जारी रखें",
+    "start": "शुरू करें"
+  },
+  "mr": {
+    "next": "पुढे",
+    "back": "मागे",
+    "begin": "सर्वे सुरू करा",
+    "login": "लॉगिन",
+    "logout": "लॉगआउट",
+    "language": "भाषा निवडा",
+    "brand": "ब्रँड निवडा",
+    "submit": "सबमिट करा",
+    "contact_info": "तुमची संपर्क माहिती",
+    "continue": "पुढे जा",
+    "start": "सुरु करा"
+  }
+}
