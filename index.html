@@ -455,6 +455,8 @@
       prevQuestion() {
         if (this.currentQuestionIndex > 0) {
           this.currentQuestionIndex--;
+        } else {
+          this.step = this.selectedBrand === 'brand6' ? 6 : 4;
         }
       },
 
