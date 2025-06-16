@@ -256,7 +256,7 @@
 
 
   <!-- STEP 10: THANK YOU -->
-  <template x-if="step===9">
+  <template x-if="step===10">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg text-center space-y-4">
       <h2 class="text-2xl">Thank you! 🎉</h2>
       <p>Your feedback has been recorded.</p>
@@ -266,7 +266,7 @@
   </template>
 
   <!-- STEP 11: STATS -->
-  <template x-if="step===9">
+  <template x-if="step===11">
     <div class="max-w-3xl w-full bg-white p-6 rounded-xl shadow-lg space-y-6 overflow-auto max-h-screen">
       <div class="flex justify-between items-center">
         <h2 class="text-2xl font-semibold text-center">Survey Statistics</h2>
@@ -372,10 +372,10 @@
       },
 
       get currentQuestion() {
-        return this.questions[this.selectedBrand][this.selectedRole][this.currentQuestionIndex];
+        return this.questions?.[this.selectedBrand]?.[this.selectedRole]?.[this.currentQuestionIndex] || {};
       },
       get totalQuestions() {
-        return this.questions[this.selectedBrand][this.selectedRole].length;
+        return this.questions?.[this.selectedBrand]?.[this.selectedRole]?.length || 0;
       },
      get contactValid() {
       if (this.selectedRole === 'b2b') {
@@ -395,17 +395,8 @@
           this.userId    = JSON.parse(atob(t.split('.')[1])).id;
           this.step      = 2;
         }
-        // build 5 dummy questions per brand×role
-        this.brands.forEach(b=>{
-          this.questions[b.id] = {};
-          ['b2b','d2c'].forEach(r=>{
-            this.questions[b.id][r] = Array.from({length:5},(_,i)=>({
-              type: i%2===0?'rating':'text',
-              text:`Question ${i+1} for ${b.name} (${r.toUpperCase()})`
-            }));
-          });
-        });
-      },
+        this.loadExternalQuestions();
+        },
 
       async login() {
         this.loading = true;
@@ -426,12 +417,6 @@
         } finally {
           this.loading = false;
         }
-      },
-
-      startSurvey() {
-        this.answers = Array(this.totalQuestions).fill(null);
-        this.currentQuestionIndex = 0;
-        this.step = 5;
       },
 
       recordAnswer(val) {
@@ -491,11 +476,6 @@
       }
     },
 
-
-    // Modify startSurvey()
-    init() {
-      this.loadExternalQuestions();
-    },
 
       startSurvey() {
       this.answers = [];
@@ -588,7 +568,7 @@
         });
 
         if (!res.ok) throw new Error();
-        this.step = 9;
+        this.step = 10;
         confetti({ spread: 60, ticks: 200 });
       } catch {
         alert('Submit error');
@@ -600,7 +580,7 @@
       
 
       viewStats() {
-        this.step = 10;
+        this.step = 11;
         this.loadStats();
       },
 
