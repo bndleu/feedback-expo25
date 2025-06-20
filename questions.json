@@ -1,503 +1,94 @@
 {
-  "generic": {
+  "Miricanvas": {
     "b2b": [
       {
         "type": "multiple",
-        "text": "Are you currently buying Korean Skincare?",
+        "text": "What best describes your business?",
+        "options": [
+          "Students or teachers",
+          "Professional Designers",
+          "Office workers (non-designers)",
+          "Small business owners",
+          "Others (please specify)"
+        ]
+      },
+      {
+        "type": "multiple",
+        "text": "How many employees does your company have?",
+        "options": [
+          "0-10",
+          "11-50",
+          "51-100",
+          "101-500",
+          "501 or more"
+        ]
+      },
+      {
+        "type": "checkbox",
+        "text": "What type of content do you frequently create?",
+        "options": [
+          "Presentation",
+          "Poster",
+          "Social Media content",
+          "Image",
+          "Flyer",
+          "Others (Please specify)"
+        ]
+      },
+      {
+        "type": "multiple",
+        "text": "On average, how often does your team prepare the content you selected?",
+        "options": [
+          "Daily",
+          "Weekly",
+          "Monthly",
+          "Occasionally"
+        ]
+      },
+      {
+        "type": "multiple",
+        "text": "How do you currently design visuals for promotions or social media?",
+        "options": [
+          "Internal Team",
+          "Freelancer/Agency",
+          "Use Canva or Adobe or similar tools",
+          "We don’t do this often"
+        ]
+      },
+      {
+        "type": "rating",
+        "text": "How beneficial would an AI-powered presentation design tool be for your business?"
+      },
+      {
+        "type": "checkbox",
+        "text": "What would make you consider adopting a new design platform?",
+        "options": [
+          "Affordable plans",
+          "Easy-to-use interface",
+          "AI-assisted design features",
+          "Templates relevant to my business",
+          "Team Collaboration Support"
+        ]
+      },
+      {
+        "type": "multiple",
+        "text": "How likely are you to try a new design platform if it meets these needs?",
+        "options": [
+          "Very likely",
+          "Somewhat likely",
+          "Not Sure",
+          "Not likely"
+        ]
+      },
+      {
+        "type": "multiple",
+        "text": "MiriCanvas is a new visual design tool (like Canva) with smart features like enhanced AI-generated presentations and business templates. Would you be open to early access and updates on how it could support your business as we bring it to India?",
         "options": [
           "Yes",
+          "Maybe",
           "No"
-        ]
-      },
-      {
-        "type": "multiple",
-        "text": "Preferred contact method for follow-up",
-        "options": [
-          "WhatsApp",
-          "Email",
-          "Phone",
-          "No contact needed"
-        ]
-      }
-    ],
-    "d2c": [
-      {
-        "type": "multiple",
-        "text": "What is your skin type?",
-        "options": [
-          "Dry",
-          "Oily",
-          "Combination",
-          "Sensitive"
-        ]
-      },
-      {
-        "type": "multiple",
-        "text": "What is your primary skin concern?",
-        "options": [
-          "Brightening",
-          "Anti-aging",
-          "Hydration",
-          "Acne/trouble care",
-          "Firmness",
-          "Others"
         ]
       }
     ]
-  },
-  "brands": {
-    "brand1": {
-      "b2b": [
-        {
-          "type": "multiple",
-          "text": "How much interest do your customers show in vegan or clean beauty products?",
-          "options": [
-            "Very high",
-            "Moderate",
-            "Low"
-          ]
-        },
-        {
-          "type": "text",
-          "text": "Do you curate your product lineup based on ingredient safety?"
-        },
-        {
-          "type": "text",
-          "text": "How important are certifications such as Vegan / EWG / Cruelty-Free when selecting new brands?"
-        },
-        {
-          "type": "multiple",
-          "text": "Would you be interested in adding a vegan Korean beauty brand to your portfolio?",
-          "options": [
-            "Yes",
-            "Maybe",
-            "No"
-          ]
-        }
-      ],
-      "d2c": [
-        {
-          "type": "multiple",
-          "text": "Have you ever purchased skincare products labeled as vegan or cruelty-free?",
-          "options": [
-            "Frequently",
-            "Occasionally",
-            "Never"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "What is the most important factor when purchasing skincare?",
-          "options": [
-            "Ingredients",
-            "Brand reputation",
-            "Price",
-            "Reviews",
-            "Packaging"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "What is your skin type?",
-          "options": [
-            "Dry",
-            "Oily",
-            "Combination",
-            "Sensitive"
-          ]
-        },
-        {
-          "type": "checkbox",
-          "text": "What product textures do you prefer?",
-          "options": [
-            "Fresh",
-            "Soft",
-            "Silky",
-            "Oily / Rich",
-            "Matte / Powdery",
-            "Gel-type",
-            "Lotion-like",
-            "Aqua / Watery"
-          ]
-        }
-      ]
-    },
-    "brand2": {
-      "b2b": [
-        {
-          "type": "checkbox",
-          "text": "What are your customers\u2019 primary skin concerns?",
-          "options": [
-            "Brightening",
-            "Anti-aging",
-            "Hydration",
-            "Acne/trouble care",
-            "Firmness",
-            "Others"
-          ]
-        },
-        {
-          "type": "text",
-          "text": "How important is visible skin improvement for your clients when evaluating products?"
-        },
-        {
-          "type": "text",
-          "text": "How important is packaging and visual design in selecting products that will sell well to consumers?"
-        }
-      ],
-      "d2c": [
-        {
-          "type": "multiple",
-          "text": "What\u2019s your biggest skincare concern?",
-          "options": [
-            "Acne",
-            "Pigmentation",
-            "Redness",
-            "Aging Firmness",
-            "Others"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "Where do you usually prefer to purchase skincare products?",
-          "options": [
-            "Offline stores",
-            "Online marketplaces",
-            "Social media shops",
-            "Others"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "What do you value the most when purchasing a product?",
-          "options": [
-            "Price",
-            "Ingredients",
-            "Design",
-            "Brand recognition",
-            "Reviews"
-          ]
-        },
-        {
-          "type": "checkbox",
-          "text": "What texture do you prefer in skincare?",
-          "options": [
-            "Lotion",
-            "Cream",
-            "Gel",
-            "Ampoule",
-            "Essence",
-            "Toner",
-            "Sheet Mask",
-            "Other"
-          ]
-        },
-        {
-          "type": "text",
-          "text": "If you\u2019ve used this product, what did you like most about it?"
-        }
-      ]
-    },
-    "brand3": {
-      "b2b": [
-        {
-          "type": "checkbox",
-          "text": "Which type of clients would you target with this brand?",
-          "options": [
-            "Clinics",
-            "Retail customers",
-            "Online buyers"
-          ]
-        },
-        {
-          "type": "text",
-          "text": "Do you already carry peptide-based or collagen skincare products?"
-        },
-        {
-          "type": "multiple",
-          "text": "What is the acceptable import price range for new K-beauty premium products in your market?",
-          "options": [
-            "Under \u20b91,000",
-            "\u20b91,000\u20132,000",
-            "\u20b92,000\u20133,000",
-            "Over \u20b93,000"
-          ]
-        }
-      ],
-      "d2c": [
-        {
-          "type": "text",
-          "text": "Are you currently using any products that address signs of aging?"
-        },
-        {
-          "type": "multiple",
-          "text": "Which anti-aging ingredient do you trust most?",
-          "options": [
-            "Retinol",
-            "Peptides",
-            "Vitamin C",
-            "Collagen"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "How much are you willing to pay for a premium K-beauty product you\u2019ve never tried before?",
-          "options": [
-            "Under \u20b9500",
-            "\u20b9500\u20131,000",
-            "\u20b91,000\u20132,000",
-            "Over \u20b92,000"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "What matters most to you in choosing a luxury skincare brand?",
-          "options": [
-            "Ingredients",
-            "Packaging",
-            "Brand story",
-            "Price",
-            "Texture"
-          ]
-        }
-      ]
-    },
-    "brand4": {
-      "b2b": [
-        {
-          "type": "multiple",
-          "text": "What best describes your role?",
-          "options": [
-            "Retailer / Store Owner",
-            "Distributor",
-            "Importer / Exporter",
-            "Salon / Spa Owner",
-            "Other"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "Are you actively exploring new products in beauty or wellness?",
-          "options": [
-            "Yes",
-            "Not right now",
-            "Depends on pricing and uniqueness"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "Would you be interested in stocking or distributing DailyChae products?",
-          "options": [
-            "Yes",
-            "Maybe, send me more info",
-            "Not at the moment"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "Estimated monthly volume you could potentially handle?",
-          "options": [
-            "Less than 50 units",
-            "50\u2013200 units",
-            "200\u2013500 units",
-            "500+ units"
-          ]
-        }
-      ],
-      "d2c": [
-        {
-          "type": "multiple",
-          "text": "Have you heard of vitamin shower filters before?",
-          "options": [
-            "Yes, I\u2019ve used them",
-            "I\u2019ve heard of them but never tried",
-            "No, this is my first time"
-          ]
-        },
-        {
-          "type": "checkbox",
-          "text": "What are you most concerned about in your current shower water?",
-          "options": [
-            "Hard water / skin dryness",
-            "Hair fall / dullness",
-            "Chlorine or odor",
-            "Low water pressure",
-            "I don\u2019t think about it much"
-          ]
-        },
-        {
-          "type": "checkbox",
-          "text": "What features matter most to you in a showerhead?",
-          "options": [
-            "Gentle on skin / hair",
-            "Stylish design",
-            "Water purification",
-            "Water-saving",
-            "Aromatic shower experience"
-          ]
-        },
-        {
-          "type": "checkbox",
-          "text": "Do you enjoy aromatic water experiences during a shower?",
-          "options": [
-            "Lavender",
-            "Citrus",
-            "Musk",
-            "Unscented"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "Want to receive exclusive launch offers and updates?",
-          "options": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-      "brand5": {
-      "b2b": [
-        {
-          "type": "text",
-          "text": "Are you currently working with sensitive-skin-focused or skin barrier repair products?"
-        },
-        {
-          "type": "text",
-          "text": "Do you carry products suitable for post-treatment care or dermatology clinics?"
-        },
-        {
-          "type": "text",
-          "text": "How important is low-irritation, high-function skincare for your customer base?"
-        }
-      ],
-      "d2c": [
-        {
-          "type": "multiple",
-          "text": "Do you have sensitive or reactive skin?",
-          "options": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "type": "text",
-          "text": "Have you used derma or clinical skincare brands before?"
-        },
-        {
-          "type": "checkbox",
-          "text": "What textures do you prefer for sensitive skin?",
-          "options": [
-            "Gel",
-            "Cream",
-            "Balm",
-            "Mist"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "Are you more interested in repair-focused or hydration-focused routines?",
-          "options": [
-            "Repair",
-            "Hydration"
-          ]
-        }
-      ]
-    },
-    "brand6": {
-      "b2b": [
-        {
-          "type": "multiple",
-          "text": "What best describes your business?",
-          "options": [
-            "Students or teachers",
-            "Professional Designers",
-            "Office workers (non-designers)",
-            "Small business owners",
-            "Others (please specify)"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "How many employees does your company have?",
-          "options": [
-            "0-10",
-            "11-50",
-            "51-100",
-            "101-500",
-            "501 or more"
-          ]
-        },
-        {
-          "type": "checkbox",
-          "text": "What type of content do you frequently create?",
-          "options": [
-            "Presentation",
-            "Poster",
-            "Social Media content",
-            "Image",
-            "Flyer",
-            "Others (Please specify)"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "On average, how often does your team prepare the content you selected?",
-          "options": [
-            "Daily",
-            "Weekly",
-            "Monthly",
-            "Occasionally"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "How do you currently design visuals for promotions or social media?",
-          "options": [
-            "Internal Team",
-            "Freelancer/Agency",
-            "Use Canva or Adobe or similar tools",
-            "We don\u2019t do this often"
-          ]
-        },
-        {
-          "type": "rating",
-          "text": "How beneficial would an AI-powered presentation design tool be for your business?"
-        },
-        {
-          "type": "checkbox",
-          "text": "What would make you consider adopting a new design platform?",
-          "options": [
-            "Affordable plans",
-            "Easy-to-use interface",
-            "AI-assisted design features",
-            "Templates relevant to my business",
-            "Team Collaboration Support"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "How likely are you to try a new design platform if it meets these needs?",
-          "options": [
-            "Very likely",
-            "Somewhat likely",
-            "Not Sure",
-            "Not likely"
-          ]
-        },
-        {
-          "type": "multiple",
-          "text": "MiriCanvas is a new visual design tool (like Canva) with smart features like enhanced AI-generated presentations and business templates. Would you be open to early access and updates on how it could support your business as we bring it to India?",
-          "options": [
-            "Yes",
-            "Maybe",
-            "No"
-          ]
-        }
-      ]
-    }
-  },
-  "_computed": {
-    "isMiriCanvas": "selectedBrand === 'brand6'"
   }
 }
