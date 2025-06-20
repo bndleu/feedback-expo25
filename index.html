@@ -43,13 +43,19 @@
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
       <h2 class="text-xl font-semibold text-center" x-text="`${currentQuestionIndex+1} of ${totalQuestions}: ${currentQuestion.text}`"></h2>
 
-      <div x-show="currentQuestion.type==='rating'" class="flex justify-center space-x-2">
+          <div x-show="currentQuestion.type==='rating'" class="flex justify-center space-x-2">
         <template x-for="i in 5" :key="i">
-          <svg @click="recordAnswer(i)" :class="answers[currentQuestion.text]>=i ? 'text-yellow-400' : 'text-gray-300'" xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 cursor-pointer transition-colors" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927C9.349 2.025 10.651 2.025 10.951 2.927l1.286 ..."/>
+          <svg @click="recordAnswer(i)"
+              :class="answers[currentQuestion.text] >= i ? 'text-yellow-400' : 'text-gray-300'"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="h-10 w-10 cursor-pointer transition-colors">
+            <path d="M9.049 2.927c.3-.902 1.602-.902 1.902 0l1.286 3.965a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.383 2.46a1 1 0 00-.364 1.118l1.286 3.965c.3.902-.755 1.65-1.538 1.118L10 13.347l-3.383 2.46c-.783.532-1.838-.216-1.538-1.118l1.286-3.965a1 1 0 00-.364-1.118L2.618 9.392c-.783-.57-.381-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.965z"/>
           </svg>
         </template>
       </div>
+
 
       <div x-show="currentQuestion.type==='text'">
         <textarea x-model="answers[currentQuestion.text]" rows="3" class="w-full p-3 border rounded" placeholder="Type your feedback…"></textarea>
@@ -123,7 +129,7 @@ function surveyApp() {
     phone: '',
     designation: '',
     userId: `guest_${Date.now()}`,
-    
+
     get currentQuestion() {
       return this.questions?.[this.selectedBrand]?.[this.selectedRole]?.[this.currentQuestionIndex] || {};
     },
@@ -228,7 +234,133 @@ function surveyApp() {
 
     resetSurvey() {
       this.step = 1;
-      this.selectedRole = '';
+      this.answers = {};
+      this.currentQuestionIndex = 0;
+      this.companyName = this.contactPerson = this.email = this.phone = this.designation = '';
+    }
+  }
+}
+</script><script>
+function surveyApp() {
+  return {
+    step: 1,
+    selectedRole: 'b2b',
+    selectedBrand: 'Miricanvas',
+    externalQuestions: {},
+    questions: {},
+    answers: {},
+    currentQuestionIndex: 0,
+    companyName: '',
+    contactPerson: '',
+    email: '',
+    phone: '',
+    designation: '',
+    userId: `guest_${Date.now()}`,
+
+    get currentQuestion() {
+      return this.questions?.[this.selectedBrand]?.[this.selectedRole]?.[this.currentQuestionIndex] || {};
+    },
+    get totalQuestions() {
+      return this.questions?.[this.selectedBrand]?.[this.selectedRole]?.length || 0;
+    },
+
+    init() {
+      this.loadExternalQuestions();
+    },
+
+    startQuestions() {
+      const brand = this.selectedBrand;
+      const role = this.selectedRole;
+      const brandSpecific = this.getBrandSpecificQuestions(brand, role);
+      this.questions[brand] = { [role]: [...brandSpecific] };
+      this.answers = {};
+      this.currentQuestionIndex = 0;
+      this.step = 3;
+    },
+
+    recordAnswer(val) {
+      const key = this.currentQuestion.text;
+      this.answers[key] = val;
+    },
+
+    toggleCheckbox(opt) {
+      const key = this.currentQuestion.text;
+      if (!Array.isArray(this.answers[key])) this.answers[key] = [];
+      const index = this.answers[key].indexOf(opt);
+      if (index > -1) this.answers[key].splice(index, 1);
+      else this.answers[key].push(opt);
+    },
+
+    nextQuestion() {
+      if (this.currentQuestionIndex + 1 < this.totalQuestions) this.currentQuestionIndex++;
+      else this.step = 4;
+    },
+
+    prevQuestion() {
+      if (this.currentQuestionIndex > 0) this.currentQuestionIndex--;
+      else this.step = 2;
+    },
+
+    getBrandSpecificQuestions(brandId, role) {
+      return this.externalQuestions?.[brandId]?.[role] || [];
+    },
+
+    async loadExternalQuestions() {
+      try {
+        const res = await fetch('/questions.json');
+        if (!res.ok) throw new Error();
+        this.externalQuestions = await res.json();
+      } catch (e) {
+        console.error('Failed to load questions:', e);
+      }
+    },
+
+    saveContactAndSubmit() {
+      this.answers["Company Name"] = this.companyName;
+      this.answers["Contact Person"] = this.contactPerson;
+      this.answers["Work Email"] = this.email;
+      this.answers["Phone"] = this.phone;
+      this.answers["Designation"] = this.designation;
+      this.submit();
+    },
+
+    async submit() {
+      this.loading = true;
+      try {
+        const ratingEntry = Object.entries(this.answers).find(([k, v]) => typeof v === 'number');
+        const rating = ratingEntry ? ratingEntry[1] : null;
+        const commentEntry = Object.entries(this.answers).find(([k, v]) => typeof v === 'string' && v.length > 2);
+        const comment = commentEntry ? commentEntry[1] : '';
+
+        const payload = {
+          role: this.selectedRole,
+          brand: this.selectedBrand,
+          rating,
+          comment,
+          answers: this.answers,
+          user_id: this.userId
+        };
+
+        const res = await fetch('https://p8u2pge6em.ap-south-1.awsapprunner.com/api/survey/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) throw new Error();
+        this.step = 5;
+        confetti({ spread: 60, ticks: 200 });
+      } catch {
+        alert('Submit error');
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    resetSurvey() {
+      this.step = 1;
       this.answers = {};
       this.currentQuestionIndex = 0;
       this.companyName = this.contactPerson = this.email = this.phone = this.designation = '';
