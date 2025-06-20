@@ -28,7 +28,84 @@
     </div>
   </template>
 
-  <!-- Other steps as included in your code -->
+   <!-- STEP 2: Intro -->
+  <template x-if="step === 2">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg text-center space-y-4">
+      <h2 class="text-xl font-semibold">Welcome, Content Creators!</h2>
+      <p class="text-gray-600">This Miricanvas survey is designed for professionals creating presentations, social media, and marketing visuals.</p>
+      <p class="text-sm text-gray-500 italic">(Your responses will help shape future AI design tools.)</p>
+      <button @click="selectedRole='b2b'; startQuestions()" class="w-full py-3 bg-blue-500 text-white rounded">Continue</button>
+    </div>
+  </template>
+
+  <!-- STEP 3: Questions -->
+  <template x-if="step === 3">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
+      <h2 class="text-xl font-semibold text-center" x-text="`${currentQuestionIndex+1} of ${totalQuestions}: ${currentQuestion.text}`"></h2>
+
+      <div x-show="currentQuestion.type==='rating'" class="flex justify-center space-x-2">
+        <template x-for="i in 5" :key="i">
+          <svg @click="recordAnswer(i)" :class="answers[currentQuestion.text]>=i ? 'text-yellow-400' : 'text-gray-300'" xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 cursor-pointer transition-colors" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927C9.349 2.025 10.651 2.025 10.951 2.927l1.286 ..."/>
+          </svg>
+        </template>
+      </div>
+
+      <div x-show="currentQuestion.type==='text'">
+        <textarea x-model="answers[currentQuestion.text]" rows="3" class="w-full p-3 border rounded" placeholder="Type your feedback…"></textarea>
+      </div>
+
+      <div x-show="currentQuestion.type==='multiple'">
+        <template x-for="opt in currentQuestion.options" :key="opt">
+          <div>
+            <label class="flex items-center space-x-3 p-2 border rounded cursor-pointer">
+              <input type="radio" :value="opt" x-model="answers[currentQuestion.text]" class="form-radio"/>
+              <span x-text="opt"></span>
+            </label>
+          </div>
+        </template>
+      </div>
+
+      <div x-show="currentQuestion.type==='checkbox'">
+        <template x-for="opt in currentQuestion.options" :key="opt">
+          <label class="flex items-center space-x-3 p-2 border rounded cursor-pointer">
+            <input type="checkbox" :value="opt" @change="toggleCheckbox(opt)" :checked="answers[currentQuestion.text]?.includes(opt)" class="form-checkbox"/>
+            <span x-text="opt"></span>
+          </label>
+        </template>
+      </div>
+
+      <div class="flex space-x-2">
+        <button @click="prevQuestion()" class="w-full py-3 bg-blue-500 text-white rounded">Back</button>
+        <button @click="nextQuestion()" :disabled="!answers[currentQuestion.text]" class="w-full py-3 bg-blue-500 text-white rounded">Next</button>
+      </div>
+    </div>
+  </template>
+
+  <!-- STEP 4: Contact Info -->
+  <template x-if="step === 4">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
+      <h2 class="text-xl font-semibold text-center">Your Contact Info</h2>
+      <div class="space-y-3">
+        <input x-model="companyName" placeholder="Company Name (optional)" class="w-full p-3 border rounded" />
+        <input x-model="contactPerson" placeholder="Contact Person *" class="w-full p-3 border rounded" />
+        <input x-model="email" type="email" placeholder="Work Email *" class="w-full p-3 border rounded" />
+        <input x-model="phone" type="tel" placeholder="Phone (10 digits preferred)" maxlength="10" class="w-full p-3 border rounded" />
+        <input x-model="designation" placeholder="Designation (optional)" class="w-full p-3 border rounded" />
+      </div>
+      <button @click="saveContactAndSubmit()" :disabled="!contactPerson || !email" class="w-full py-3 bg-green-500 text-white rounded disabled:opacity-50">Submit</button>
+    </div>
+  </template>
+
+  <!-- STEP 5: Thank You -->
+  <template x-if="step === 5">
+    <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg text-center space-y-4">
+      <h2 class="text-2xl">Thank you! 🎉</h2>
+      <p>Your feedback has been recorded.</p>
+      <button @click="resetSurvey(); step=1" class="w-full py-3 bg-blue-500 text-white rounded">New Survey</button>
+    </div>
+  </template>
+
 
 <script>
 function surveyApp() {
@@ -161,3 +238,4 @@ function surveyApp() {
 </script>
 </body>
 </html>
+
