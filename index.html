@@ -103,7 +103,7 @@
         <input x-model="phone" type="tel" placeholder="Phone (10 digits preferred)" maxlength="10" class="w-full p-3 border rounded" />
         <input x-model="designation" placeholder="Designation (optional)" class="w-full p-3 border rounded" />
       </div>
-      <button @click="saveContactAndSubmit()" :disabled="!contactPerson || !email" class="w-full py-3 bg-green-500 text-white rounded disabled:opacity-50">Submit</button>
+      <button @click="saveContactAndSubmit()" :disabled="!contactPerson || (!email && !phone)"  class="w-full py-3 bg-green-500 text-white rounded disabled:opacity-50">Submit</button>
     </div>
   </template>
 
@@ -319,15 +319,40 @@ function surveyApp() {
       }
     },
 
-    saveContactAndSubmit() {
-      this.answers["Company Name"] = this.companyName;
-      this.answers["Contact Person"] = this.contactPerson;
-      this.answers["Work Email"] = this.email;
-      this.answers["Phone"] = this.phone;
-      this.answers["Designation"] = this.designation;
-      this.submit();
-    },
+  saveContactAndSubmit() {
+  // Basic validation
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phonePattern = /^[0-9]{10}$/;
 
+  if (!this.contactPerson) {
+    alert("Please enter the contact person name.");
+    return;
+  }
+
+  if (!this.email && !this.phone) {
+    alert("Please provide either an email or phone number.");
+    return;
+  }
+
+  if (this.email && !emailPattern.test(this.email)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  if (this.phone && !phonePattern.test(this.phone)) {
+    alert("Please enter a valid 10-digit phone number.");
+    return;
+  }
+
+  // Store in answers
+  this.answers["Company Name"] = this.companyName;
+  this.answers["Contact Person"] = this.contactPerson;
+  this.answers["Work Email"] = this.email;
+  this.answers["Phone"] = this.phone;
+  this.answers["Designation"] = this.designation;
+
+  this.submit();
+},
     async submit() {
       this.loading = true;
       try {
