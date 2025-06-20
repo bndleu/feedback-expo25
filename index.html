@@ -34,7 +34,7 @@
             <img src="https://cdn.bndleu.com/expoMumbai2025/miriicanvas.png" class="h-120 mx-auto" alt="banner"/>
 
       <h2 class="text-xl font-semibold">Welcome, Content Creators!</h2>
-      <p class="text-gray-600">This Miricanvas survey is designed for professionals creating presentations, social media, and marketing visuals.  As a thank you for your time, you’ll receive a <strong>FREE Miricanvas Pro subscription</strong>—delivered to your email or phone soon after completion. </p>
+      <p class="text-gray-600">This Miricanvas survey is designed for professionals creating presentations, social media, and marketing visuals.  As a thank you for your time, you’ll receive a <strong>FREE Miricanvas Pro subscription</strong>—via email or phone within a couple of days after completion. </p>
       <p class="text-sm text-gray-500 italic">(Your responses will help shape future AI design tools.)</p>
       <button @click="selectedRole='b2b'; startQuestions()" class="w-full py-3 bg-blue-500 text-white rounded">Continue</button>
     </div>
@@ -94,6 +94,8 @@
   <template x-if="step === 4">
     <div class="max-w-md w-full bg-white p-6 rounded-xl shadow-lg space-y-4">
       <h2 class="text-xl font-semibold text-center">Your Contact Info</h2>
+            <h4 class="text-xl font-semibold text-center">Either email or phone must be filled to receive free voucher code</h2>
+
       <div class="space-y-3">
         <input x-model="companyName" placeholder="Company Name (optional)" class="w-full p-3 border rounded" />
         <input x-model="contactPerson" placeholder="Contact Person *" class="w-full p-3 border rounded" />
